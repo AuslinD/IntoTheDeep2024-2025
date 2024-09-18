@@ -3,10 +3,12 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp(name="TelemetryTesting", group = "test")
 public class TelemetryTesting extends OpMode {
     //this code is for telemtry testing
+
     DcMotor fr, bl;
     @Override
     public void init() {
@@ -18,5 +20,6 @@ public class TelemetryTesting extends OpMode {
     public void loop() {
         telemetry.addData("horizontal", fr.getCurrentPosition());
         telemetry.addData("vertical", bl.getCurrentPosition());
+        telemetry.update();
     }
 }
