@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 @TeleOp(name="TelemetryTesting", group = "test")
 public class TelemetryTesting extends OpMode {
-
+    //this code is for telemtry testing
     DcMotor fr, bl;
     @Override
     public void init() {
