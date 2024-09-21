@@ -26,6 +26,8 @@ public class TestMethods{
         fr.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         bl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         br.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        fl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
     public void drive(double power, double milliseconds){
@@ -44,7 +46,7 @@ public class TestMethods{
             setMotorPowers(power);
             if (fl.getCurrentPosition() > distance)
                 setMotorPowers(-power);
-            opMode.telemetry.update();   
+            opMode.telemetry.update();
         }
         setMotorPowers(0);
 
