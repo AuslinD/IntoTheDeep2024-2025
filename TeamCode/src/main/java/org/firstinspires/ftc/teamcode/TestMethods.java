@@ -41,8 +41,11 @@ public class TestMethods{
     public void distance (double power, double distance){
         while(fl.getCurrentPosition() < distance){
             setMotorPowers(power);
+            if (fl.getCurrentPosition() < distance)
+                setMotorPowers(-power);
         }
         setMotorPowers(0);
+
     }
 
     public void setMotorPowers(double power){

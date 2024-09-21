@@ -10,6 +10,7 @@ public class Test_Auto_Distance extends LinearOpMode {
         waitForStart();
 
         automethods.distance(.5, 1000);
+        automethods.distance(.5, -1000);
 
     }
 }
