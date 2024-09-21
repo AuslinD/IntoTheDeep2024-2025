@@ -39,10 +39,12 @@ public class TestMethods{
     }
 
     public void distance (double power, double distance){
+        opMode.telemetry.addData("fl",fl.getCurrentPosition());
         while(fl.getCurrentPosition() < distance){
             setMotorPowers(power);
             if (fl.getCurrentPosition() > distance)
                 setMotorPowers(-power);
+            opMode.telemetry.update();   
         }
         setMotorPowers(0);
 
