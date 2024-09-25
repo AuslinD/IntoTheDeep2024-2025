@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-@Autonomous(name="forwardtest")
+@Autonomous(name="test")
 public class TestAuto extends LinearOpMode {
     TestMethods automethods;
     @Override
@@ -11,7 +11,7 @@ public class TestAuto extends LinearOpMode {
         automethods = new TestMethods(this);
         waitForStart();
 
-        automethods.drive(.5, 1000);
+        automethods.turn(.5, -90);
 
     }
 

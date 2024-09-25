@@ -10,6 +10,8 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
+
 public class TestMethods{
     DcMotor fl, bl, fr, br;
 
@@ -79,6 +81,30 @@ public class TestMethods{
             else{
                 setMotorPowers(power);
             }
+            opMode.telemetry.update();
+        }
+        setMotorPowers(0);
+    }
+
+    public void turn(double power, double degrees) {
+        if(degrees < 0) {
+            power = -power;
+        }
+
+        degrees = -degrees;
+        Orientation angles = imu.getAngularOrientation();
+        double initHeading = angles.firstAngle;
+
+        opMode.telemetry.addData("heading", angles.firstAngle);
+
+        while (Math.abs(angles.firstAngle - degrees - initHeading) > 2) {
+            angles = imu.getAngularOrientation();
+
+            fr.setPower(-power);
+            br.setPower(-power);
+            fl.setPower(power);
+            bl.setPower(power);
+
             opMode.telemetry.update();
         }
         setMotorPowers(0);
