@@ -97,8 +97,21 @@ public class TestMethods{
 
         opMode.telemetry.addData("heading", angles.firstAngle);
 
-        while ((angles.firstAngle - degrees) > 2) {
+        while (Math.abs(angles.firstAngle - degrees) > 2) {
             angles = imu.getAngularOrientation();
+
+            if (degrees < 0 ){
+                fr.setPower(-power);
+                br.setPower(-power);
+                fl.setPower(power);
+                bl.setPower(power);
+
+            } else {
+                fr.setPower(power);
+                br.setPower(power);
+                bl.setPower(-power);
+                fl.setPower(-power);
+            }
             fr.setPower(-power);
             br.setPower(-power);
             fl.setPower(power);
