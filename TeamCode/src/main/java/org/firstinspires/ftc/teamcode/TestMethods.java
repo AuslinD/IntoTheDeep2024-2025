@@ -136,12 +136,19 @@ public class TestMethods{
             opMode.telemetry.addData("CWDistance", (540 + angles.firstAngle - degrees) % 360);
             angles = imu.getAngularOrientation();
 
-
-            fr.setPower(-power);
-            br.setPower(-power);
-            fl.setPower(power);
-            bl.setPower(power);
-
+            if (CCWDistance > CWDistance)
+            {
+                fr.setPower(-power);
+                br.setPower(-power);
+                fl.setPower(power);
+                bl.setPower(power);
+            }
+            else {
+                fr.setPower(power);
+                br.setPower(power);
+                fl.setPower(-power);
+                bl.setPower(-power);
+            }
             opMode.telemetry.update();
         }
         setMotorPowers(0);
