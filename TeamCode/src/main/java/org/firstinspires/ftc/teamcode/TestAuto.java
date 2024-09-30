@@ -11,7 +11,7 @@ public class TestAuto extends LinearOpMode {
         automethods = new TestMethods(this);
         waitForStart();
 
-        automethods.turn(.5, -90);
+        automethods.toHeading(0.25, 30);
 
     }
 

@@ -97,21 +97,45 @@ public class TestMethods{
 
         opMode.telemetry.addData("heading", angles.firstAngle);
 
-        while (Math.abs(angles.firstAngle - degrees) > 2) {
+        while (Math.abs(angles.firstAngle - degrees - initHeading) > 2) {
             angles = imu.getAngularOrientation();
 
-            if (degrees < 0 ){
-                fr.setPower(-power);
-                br.setPower(-power);
-                fl.setPower(power);
-                bl.setPower(power);
+            fr.setPower(-power);
+            br.setPower(-power);
+            fl.setPower(power);
+            bl.setPower(power);
 
-            } else {
-                fr.setPower(power);
-                br.setPower(power);
-                bl.setPower(-power);
-                fl.setPower(-power);
-            }
+            opMode.telemetry.update();
+        }
+        setMotorPowers(0);
+
+    }
+
+    public void toHeading(double power, double degrees) {
+        Orientation angles = imu.getAngularOrientation();
+        degrees += 180;
+
+
+        double CCWDistance = (180 - angles.firstAngle + degrees) % 360;
+        double CWDistance = (540 + angles.firstAngle - degrees) % 360;
+        double distance = Math.min(CWDistance, CCWDistance);
+
+
+
+        while (distance > 2) {
+
+
+            CCWDistance = (180 - angles.firstAngle + degrees) % 360;
+            CWDistance = (540 + angles.firstAngle - degrees) % 360;
+
+            distance = Math.min(CWDistance, CCWDistance);
+
+            opMode.telemetry.addData("heading", angles.firstAngle + 180);
+            opMode.telemetry.addData("CCWDistance", (180 - angles.firstAngle + degrees) % 360);
+            opMode.telemetry.addData("CWDistance", (540 + angles.firstAngle - degrees) % 360);
+            angles = imu.getAngularOrientation();
+
+
             fr.setPower(-power);
             br.setPower(-power);
             fl.setPower(power);
