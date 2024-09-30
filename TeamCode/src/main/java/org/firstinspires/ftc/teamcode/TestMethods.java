@@ -115,9 +115,10 @@ public class TestMethods{
         Orientation angles = imu.getAngularOrientation();
         degrees += 180;
 
+        double curHeading = angles.firstAngle + 180;
 
-        double CCWDistance = (180 - angles.firstAngle + degrees) % 360;
-        double CWDistance = (540 + angles.firstAngle - degrees) % 360;
+        double CCWDistance = (360 - curHeading + degrees) % 360;
+        double CWDistance = (360 + curHeading - degrees) % 360;
         double distance = Math.min(CWDistance, CCWDistance);
 
 
