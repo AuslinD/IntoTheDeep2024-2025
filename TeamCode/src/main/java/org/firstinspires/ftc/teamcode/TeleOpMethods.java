@@ -33,10 +33,10 @@ public class TeleOpMethods {
 
         //Moves right and left
         if (Math.abs(gamepad1.right_stick_x) > 0.1) {
-            FLP -= gamepad1.right_stick_x;
-            FRP += gamepad1.right_stick_x;
-            BLP -= gamepad1.right_stick_x;
-            BRP += gamepad1.right_stick_x;
+            FLP += gamepad1.right_stick_x;
+            FRP -= gamepad1.right_stick_x;
+            BLP += gamepad1.right_stick_x;
+            BRP -= gamepad1.right_stick_x;
         }
 
 
@@ -48,6 +48,14 @@ public class TeleOpMethods {
             BLP += gamepad1.left_stick_x;
             BRP -= gamepad1.left_stick_x;
         }
+
+        if (gamepad1.right_trigger > 0.2){
+            FLP /= 2;
+            FRP /= 2;
+            BLP /= 2;
+            BRP /= 2;
+        }
+
 
         robot.drivetrain.fl.setPower(FLP);
         robot.drivetrain.fr.setPower(FRP);
