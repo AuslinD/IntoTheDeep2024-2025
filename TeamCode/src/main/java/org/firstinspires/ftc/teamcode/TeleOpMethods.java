@@ -24,10 +24,10 @@ public class TeleOpMethods {
 
         // Moves forward and back
         if (Math.abs(gamepad1.left_stick_y) > 0.1){
-            FLP += gamepad1.left_stick_y;
-            FRP += gamepad1.left_stick_y;
-            BLP += gamepad1.left_stick_y;
-            BRP += gamepad1.left_stick_y;
+            FLP += -gamepad1.left_stick_y;
+            FRP += -gamepad1.left_stick_y;
+            BLP += -gamepad1.left_stick_y;
+            BRP += -gamepad1.left_stick_y;
         }
 
 
@@ -43,10 +43,10 @@ public class TeleOpMethods {
 
         // Strafe right and left
         if (Math.abs(gamepad1.left_stick_x) > 0.1) {
-            FLP -= gamepad1.left_stick_x;
-            FRP += gamepad1.left_stick_x;
-            BLP += gamepad1.left_stick_x;
-            BRP -= gamepad1.left_stick_x;
+            FLP += gamepad1.left_stick_x;
+            FRP -= gamepad1.left_stick_x;
+            BLP -= gamepad1.left_stick_x;
+            BRP += gamepad1.left_stick_x;
         }
 
         if (gamepad1.right_trigger > 0.2){
