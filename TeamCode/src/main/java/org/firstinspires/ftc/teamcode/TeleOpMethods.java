@@ -5,9 +5,13 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 
 public class TeleOpMethods {
 
+
+    OpMode opMode;
+
     Robot robot;
 
     public TeleOpMethods(OpMode opMode) {
+        this.opMode = opMode;
         robot = new Robot(opMode);
     }
 
@@ -61,6 +65,12 @@ public class TeleOpMethods {
         robot.drivetrain.fr.setPower(FRP);
         robot.drivetrain.bl.setPower(BLP);
         robot.drivetrain.br.setPower(BRP);
+
+        opMode.telemetry.addData("vertical", robot.drivetrain.fl.getCurrentPosition());
+        opMode.telemetry.addData("horizontal", robot.drivetrain.fr.getCurrentPosition());
+        opMode.telemetry.update();
+
+
 
 
     }
