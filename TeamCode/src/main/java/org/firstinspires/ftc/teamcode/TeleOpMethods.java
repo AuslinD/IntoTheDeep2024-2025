@@ -9,6 +9,8 @@ public class TeleOpMethods {
     OpMode opMode;
 
     Robot robot;
+    static double up1p, up2p;
+    private static boolean ignoreBounds = false;
 
     public TeleOpMethods(OpMode opMode) {
         this.opMode = opMode;
@@ -18,7 +20,7 @@ public class TeleOpMethods {
     public void teleOpControls(Gamepad gamepad1, Gamepad gamepad2)
     {
         drivetrain(gamepad1, gamepad2);
-
+        verticalLift(gamepad1, gamepad2);
     }
     public void drivetrain(Gamepad gamepad1, Gamepad gamepad2) {
         double FLP, FRP, BRP, BLP;
@@ -75,7 +77,32 @@ public class TeleOpMethods {
 
 
     }
+    public void verticalLift (Gamepad gamepad1, Gamepad gamepad2){
+        /*if(gamepad1.dpad_left) ignoreBounds = true;
 
+        if(gamepad1.dpad_right){
+            ignoreBounds = false;
+            robot = new Robot(robot.teleOpMode);
+        }*/
+        int multiplier = 120;
+        if (Math.abs(gamepad2.left_stick_y) > 0.1){
+            up1p += -gamepad2.left_stick_y * multiplier;
+
+            up2p = up1p;
+
+            if(up1p < -10/* && !ignoreBounds*/)
+            {
+                up1p = -10;
+            }
+            else if(up1p > 3600/* && !ignoreBounds*/){
+                up1p = 3600;
+            }
+            robot.lift.goUpOrDown((int)(up1p));
+        }
+        else{
+            up1p = robot.lift.leftSlide.getCurrentPosition();
+        }
+    }
 
 
 
