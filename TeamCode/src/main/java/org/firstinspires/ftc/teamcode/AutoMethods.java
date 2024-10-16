@@ -14,8 +14,10 @@ public class AutoMethods {
 
     public void encoderDrive(double power, int ticks){
         int initPosition = robot.drivetrain.fl.getCurrentPosition();
-        opMode.telemetry.addData("fl",robot.drivetrain.fl.getCurrentPosition());
+
         while(Math.abs(robot.drivetrain.fl.getCurrentPosition() - ticks - initPosition) > 5){
+            opMode.telemetry.addData("fl",robot.drivetrain.fl.getCurrentPosition());
+            
             if (robot.drivetrain.fl.getCurrentPosition() > ticks) {
                 robot.drivetrain.fl.setPower(-power);
                 robot.drivetrain.fr.setPower(-power);
