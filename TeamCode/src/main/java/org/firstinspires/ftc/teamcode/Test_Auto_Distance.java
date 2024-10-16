@@ -12,6 +12,8 @@ public class Test_Auto_Distance extends LinearOpMode {
         waitForStart();
 
         automethods.encoderDrive(.5, 6000);
+        automethods.toHeading(.5, 179);
+        automethods.encoderDrive(.5, 1000);
 
 
     }
