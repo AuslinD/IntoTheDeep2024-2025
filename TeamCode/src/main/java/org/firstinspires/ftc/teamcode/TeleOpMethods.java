@@ -18,6 +18,7 @@ public class TeleOpMethods {
     public void teleOpControls(Gamepad gamepad1, Gamepad gamepad2)
     {
         drivetrain(gamepad1, gamepad2);
+
     }
     public void drivetrain(Gamepad gamepad1, Gamepad gamepad2) {
         double FLP, FRP, BRP, BLP;

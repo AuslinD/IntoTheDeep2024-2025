@@ -5,14 +5,14 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 @Autonomous (name = "Auto_Distance")
 public class Test_Auto_Distance extends LinearOpMode {
-    TestMethods automethods;
+    AutoMethods automethods;
     @Override
     public void runOpMode() throws InterruptedException {
-        automethods = new TestMethods(this);
+        automethods = new AutoMethods(this);
         waitForStart();
 
-        automethods.distance(.5, 1000);
-        automethods.distance(.5, -1000);
+        automethods.encoderDrive(.5, 6000);
+
 
     }
 }
