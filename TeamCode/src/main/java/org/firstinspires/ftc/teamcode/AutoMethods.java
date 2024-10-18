@@ -20,7 +20,7 @@ public class AutoMethods {
         while(Math.abs(robot.drivetrain.par.getPositionAndVelocity().position - ticks - initPosition) > 500){
             opMode.telemetry.addData("par position",robot.drivetrain.par.getPositionAndVelocity().position);
 
-            if (robot.drivetrain.par.getPositionAndVelocity().position > ticks) {
+            if (robot.drivetrain.par.getPositionAndVelocity().position - initPosition > ticks) {
                 robot.drivetrain.fl.setPower(-power);
                 robot.drivetrain.fr.setPower(-power);
                 robot.drivetrain.bl.setPower(-power);
