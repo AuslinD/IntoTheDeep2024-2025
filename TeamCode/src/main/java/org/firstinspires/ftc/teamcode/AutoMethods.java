@@ -84,4 +84,8 @@ public class AutoMethods {
         robot.drivetrain.fl.setPower(0);
         robot.drivetrain.bl.setPower(0);
     }
+
+    public void setVerticalLiftPosition(int position){
+        robot.lift.goUpOrDown(position);
+    }
 }
