@@ -21,6 +21,7 @@ public class TeleOpMethods {
     {
         drivetrain(gamepad1, gamepad2);
         verticalLift(gamepad1, gamepad2);
+        claw(gamepad1, gamepad2);
     }
     public void drivetrain(Gamepad gamepad1, Gamepad gamepad2) {
         double FLP, FRP, BRP, BLP;
@@ -101,6 +102,15 @@ public class TeleOpMethods {
         }
         else{
             up1p = robot.lift.leftSlide.getCurrentPosition();
+        }
+    }
+
+    public void claw(Gamepad gamepad1, Gamepad gamepad2){
+        if(gamepad2.a){
+            robot.claw.grabClaw();
+        }
+        if(gamepad2.b){
+            robot.claw.releaseClaw();
         }
     }
 
