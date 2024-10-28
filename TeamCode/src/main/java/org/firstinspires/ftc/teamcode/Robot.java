@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 public class Robot {
     Drivetrain drivetrain;
     Lift lift;
+    Claw claw;
 
     BNO055IMU imu;
 
