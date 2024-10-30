@@ -10,6 +10,7 @@ public class TeleOpMethods {
 
     Robot robot;
     static double up1p, up2p;
+    static double armAngle;
     private static boolean ignoreBounds = false;
 
     public TeleOpMethods(OpMode opMode) {
@@ -112,6 +113,20 @@ public class TeleOpMethods {
         if(gamepad2.b){
             robot.claw.releaseClaw();
         }
+
+        if(gamepad2.dpad_down){
+            armAngle -= .05;
+        }
+        if(gamepad2.dpad_up){
+            armAngle += .05;
+        }
+        if (armAngle > 1){
+            armAngle = 1;
+        }
+        if (armAngle < -1){
+            armAngle = -1;
+        }
+        robot.claw.setPosition(armAngle);
     }
 
 

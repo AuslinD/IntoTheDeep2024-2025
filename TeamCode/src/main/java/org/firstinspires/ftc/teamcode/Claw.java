@@ -34,4 +34,8 @@ public class Claw {
         left.setPosition(leftRelease);
         right.setPosition(rightRelease);
     }
+
+    public void setPosition(double position){
+        arm.setPosition(position);
+    }
 }
