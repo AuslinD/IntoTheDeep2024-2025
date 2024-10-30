@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class Claw {
 
-    private Servo left, right;
+    private Servo left, right, arm;
     double leftGrab = 0;
     double rightGrab = 0;
     double leftRelease = 0;
@@ -16,6 +16,8 @@ public class Claw {
     public Claw (OpMode opmode){
         left = opmode.hardwareMap.get(Servo.class, "leftclaw");
         right = opmode.hardwareMap.get(Servo.class, "rightclaw");
+        arm = opmode.hardwareMap.get(Servo.class, "arm");
+        
     }
 
     public Claw (LinearOpMode linearOpMode){
