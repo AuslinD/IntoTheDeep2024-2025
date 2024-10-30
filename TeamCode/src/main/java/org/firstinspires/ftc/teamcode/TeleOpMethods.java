@@ -20,6 +20,7 @@ public class TeleOpMethods {
 
     public void teleOpControls(Gamepad gamepad1, Gamepad gamepad2)
     {
+        // call each method
         drivetrain(gamepad1, gamepad2);
         verticalLift(gamepad1, gamepad2);
         claw(gamepad1, gamepad2);
@@ -57,7 +58,7 @@ public class TeleOpMethods {
             BLP -= gamepad1.left_stick_x;
             BRP += gamepad1.left_stick_x;
         }
-
+        // slow robot down holding trigger
         if (gamepad1.right_trigger > 0.2){
             FLP /= 2;
             FRP /= 2;
@@ -86,6 +87,7 @@ public class TeleOpMethods {
             ignoreBounds = false;
             robot = new Robot(robot.teleOpMode);
         }*/
+        // move life up and down
         int multiplier = 120;
         if (Math.abs(gamepad2.left_stick_y) > 0.1){
             up1p += -gamepad2.left_stick_y * multiplier;
@@ -107,13 +109,14 @@ public class TeleOpMethods {
     }
 
     public void claw(Gamepad gamepad1, Gamepad gamepad2){
+        // claw grabby and release
         if(gamepad2.a){
             robot.claw.grabClaw();
         }
         if(gamepad2.b){
             robot.claw.releaseClaw();
         }
-
+        // claw angle up and down
         if(gamepad2.dpad_down){
             armAngle -= .05;
         }
