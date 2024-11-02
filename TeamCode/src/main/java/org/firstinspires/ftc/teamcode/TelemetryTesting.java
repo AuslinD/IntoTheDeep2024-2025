@@ -21,9 +21,11 @@ public class TelemetryTesting extends OpMode {
     @Override
     public void loop() {
         telemetry.addData("fl", robot.drivetrain.fl.getCurrentPosition());
-        telemetry.addData("firstangle", robot.imu.getAngularOrientation().firstAngle);
-        telemetry.addData("secondangle", robot.imu.getAngularOrientation().secondAngle);
-        telemetry.addData("thirdangle", robot.imu.getAngularOrientation().thirdAngle);
+        //telemetry.addData("firstangle", robot.imu.getAngularOrientation().firstAngle);
+        //telemetry.addData("secondangle", robot.imu.getAngularOrientation().secondAngle);
+        //telemetry.addData("thirdangle", robot.imu.getAngularOrientation().thirdAngle);
+        telemetry.addData("firstangle", robot.imu.getRobotYawPitchRollAngles());
+
         telemetry.update();
     }
 }

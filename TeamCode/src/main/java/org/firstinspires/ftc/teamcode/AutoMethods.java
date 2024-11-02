@@ -41,6 +41,7 @@ public class AutoMethods {
     }
 
     public void toHeading(double power, double degrees){
+        /*
         Orientation angles = robot.imu.getAngularOrientation();
         degrees += 180;
 
@@ -83,6 +84,8 @@ public class AutoMethods {
         robot.drivetrain.br.setPower(0);
         robot.drivetrain.fl.setPower(0);
         robot.drivetrain.bl.setPower(0);
+
+         */
     }
 
     public void setVerticalLiftPosition(int position){
