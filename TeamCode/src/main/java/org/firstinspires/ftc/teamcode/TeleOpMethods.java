@@ -18,6 +18,9 @@ public class TeleOpMethods {
     public TeleOpMethods(OpMode opMode) {
         this.opMode = opMode;
         robot = new Robot(opMode);
+
+        armAngle = 0;
+
     }
 
     public void teleOpControls(Gamepad gamepad1, Gamepad gamepad2)

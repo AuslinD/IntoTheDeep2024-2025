@@ -7,10 +7,10 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class Claw {
 
     private Servo left, right, arm;
-    double leftGrab = 0;
-    double rightGrab = 0;
-    double leftRelease = 0;
-    double rightRelease = 0;
+    double leftGrab = .5;
+    double rightGrab = .5;
+    double leftRelease = -.5;
+    double rightRelease = -.5;
 
 
     public Claw (OpMode opmode){
