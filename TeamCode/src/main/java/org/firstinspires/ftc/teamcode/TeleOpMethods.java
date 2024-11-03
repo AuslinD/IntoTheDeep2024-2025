@@ -19,7 +19,7 @@ public class TeleOpMethods {
         this.opMode = opMode;
         robot = new Robot(opMode);
 
-        armAngle = 0;
+        armAngle = .3;
 
     }
 
@@ -134,20 +134,20 @@ public class TeleOpMethods {
             up1p += -gamepad2.left_stick_y * multiplier;
 
             if(gamepad2.left_stick_y > .1){
-                robot.lift.power = .5;
+                robot.lift.power = .6;
             }
             else{
-                robot.lift.power = .8;
+                robot.lift.power = 1;
             }
 
             up2p = up1p;
 
-            if(up1p < 35/* && !ignoreBounds*/)
+            if(up1p < 15/* && !ignoreBounds*/)
             {
-                up1p = 35;
+                up1p = 15;
             }
-            else if(up1p > 650/* && !ignoreBounds*/){
-                up1p = 650;
+            else if(up1p > 750/* && !ignoreBounds*/){
+                up1p = 750;
             }
             robot.lift.goUpOrDown((int)(up1p));
         }
@@ -165,11 +165,11 @@ public class TeleOpMethods {
             robot.claw.releaseClaw();
         }
         // claw angle up and down
-        if(gamepad2.dpad_down){
-            armAngle -= .05;
-        }
         if(gamepad2.dpad_up){
-            armAngle += .05;
+            armAngle -= .01;
+        }
+        if(gamepad2.dpad_down){
+            armAngle += .01;
         }
         if (armAngle > 1){
             armAngle = 1;
@@ -185,6 +185,7 @@ public class TeleOpMethods {
         opMode.telemetry.addData("vertical", robot.drivetrain.fl.getCurrentPosition());
         opMode.telemetry.addData("horizontal", robot.drivetrain.fr.getCurrentPosition());
         opMode.telemetry.addData("firstangle", robot.imu.getRobotYawPitchRollAngles());
+        opMode.telemetry.addData("arm", armAngle);
         opMode.telemetry.update();
     }
 
