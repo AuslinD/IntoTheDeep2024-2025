@@ -146,8 +146,8 @@ public class TeleOpMethods {
             {
                 up1p = 15;
             }
-            else if(up1p > 750/* && !ignoreBounds*/){
-                up1p = 750;
+            else if(up1p > 3750/* && !ignoreBounds*/){
+                up1p = 3750;
             }
             robot.lift.goUpOrDown((int)(up1p));
         }
