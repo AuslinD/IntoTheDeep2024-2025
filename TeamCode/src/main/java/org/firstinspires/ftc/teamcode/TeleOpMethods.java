@@ -128,7 +128,7 @@ public class TeleOpMethods {
             robot = new Robot(robot.teleOpMode);
         }*/
 
-        int multiplier = 5;
+        int multiplier = 20;
 
         if (Math.abs(gamepad2.left_stick_y) > 0.1){
             up1p += -gamepad2.left_stick_y * multiplier;
