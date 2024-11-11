@@ -128,7 +128,7 @@ public class TeleOpMethods {
             robot = new Robot(robot.teleOpMode);
         }*/
 
-        int multiplier = 20;
+        int multiplier = 35;
 
         if (Math.abs(gamepad2.left_stick_y) > 0.1){
             up1p += -gamepad2.left_stick_y * multiplier;
@@ -146,8 +146,8 @@ public class TeleOpMethods {
             {
                 up1p = 15;
             }
-            else if(up1p > 3750/* && !ignoreBounds*/){
-                up1p = 3750;
+            else if(up1p > 3450/* && !ignoreBounds*/){
+                up1p = 3450;
             }
             robot.lift.goUpOrDown((int)(up1p));
         }

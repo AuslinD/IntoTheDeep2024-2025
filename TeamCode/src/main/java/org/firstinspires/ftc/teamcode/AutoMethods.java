@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
@@ -39,6 +40,38 @@ public class AutoMethods {
         robot.drivetrain.bl.setPower(0);
         robot.drivetrain.br.setPower(0);
     }
+
+    public void encoderPIDDrive(double power, int ticks){
+        int initPosition = robot.drivetrain.par.getPositionAndVelocity().position;
+        PID drivePID = new PID(.0001, 0, 0, ticks);
+        ElapsedTime elapsedTime = new ElapsedTime();
+
+        while(Math.abs(robot.drivetrain.par.getPositionAndVelocity().position - ticks - initPosition) > 500){
+            opMode.telemetry.addData("par position",robot.drivetrain.par.getPositionAndVelocity().position);
+
+            double newPower = drivePID.loop(robot.drivetrain.par.getPositionAndVelocity().position - initPosition, elapsedTime.milliseconds());
+
+            if (robot.drivetrain.par.getPositionAndVelocity().position - initPosition > ticks) {
+                robot.drivetrain.fl.setPower(-power);
+                robot.drivetrain.fr.setPower(-power);
+                robot.drivetrain.bl.setPower(-power);
+                robot.drivetrain.br.setPower(-power);
+            }
+            else{
+                robot.drivetrain.fl.setPower(power);
+                robot.drivetrain.fr.setPower(power);
+                robot.drivetrain.bl.setPower(power);
+                robot.drivetrain.br.setPower(power);
+            }
+            opMode.telemetry.update();
+        }
+        robot.drivetrain.fl.setPower(0);
+        robot.drivetrain.fr.setPower(0);
+        robot.drivetrain.bl.setPower(0);
+        robot.drivetrain.br.setPower(0);
+    }
+
+
 
     public void toHeading(double power, double degrees){
         /*
