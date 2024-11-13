@@ -1,45 +1,44 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
-public class HorozontalSlide {
+public class HorizontalSlide {
 
     OpMode opMode;
-    DcMotor leftHorozontol, rightHorozontol;
+    DcMotor leftHorizontal, rightHorizontal;
     double power = .8;
-    public Lift(OpMode opMode){
+    public HorizontalSlide(OpMode opMode){
         this.opMode = opMode;
-        leftHorozontol = opMode.hardwareMap.get(DcMotorEx.class, "leftHorozontol");
-        rightHorozontol = opMode.hardwareMap.get(DcMotorEx.class, "rightHorozontol");
+        leftHorizontal = opMode.hardwareMap.get(DcMotorEx.class, "leftHorizontal");
+        rightHorizontal = opMode.hardwareMap.get(DcMotorEx.class, "rightHorizontal");
 
         // This will Reset the encoder once it gets to the fully extent point?
         //leftSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightHorozontol.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightHorizontal.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         // I am not sure what this does but it was in the verticle one so i kept it
-        leftHorozontol.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        rightHorozontol.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        leftHorizontal.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightHorizontal.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        leftHorozontol.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        rightHorozontol.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        leftHorizontal.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightHorizontal.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        leftHorozontol.setDirection(DcMotor.Direction.FORWARD);
-        rightHorozontol.setDirection(DcMotor.Direction.REVERSE);
+        leftHorizontal.setDirection(DcMotor.Direction.FORWARD);
+        rightHorizontal.setDirection(DcMotor.Direction.REVERSE);
 
         /// Sets position back to start
-        leftHorozontol.setTargetPosition(0);
-        rightHorozontol.setTargetPosition(0);
+        leftHorizontal.setTargetPosition(0);
+        rightHorizontal.setTargetPosition(0);
 
         ///runs to set position
-        leftHorozontol.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightHorozontol.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        leftHorizontal.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightHorizontal.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         /// Says what set power is reffering to
-        leftHorozontol.setPower(power);
-        rightHorozontol.setPower(power);
+        leftHorizontal.setPower(power);
+        rightHorizontal.setPower(power);
     }
     /*public Lift(LinearOpMode linearOpMode){
 
@@ -79,5 +78,5 @@ public class HorozontalSlide {
         leftHorozontol.setPower(power);
         rightHorozontol.setPower(power);
     }
-
+*/
 }
