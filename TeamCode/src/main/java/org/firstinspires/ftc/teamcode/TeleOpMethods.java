@@ -180,6 +180,10 @@ public class TeleOpMethods {
         robot.claw.setPosition(armAngle);
     }
 
+    public void tempClaw(Gamepad gamepad1, Gamepad gamepad2){
+
+    }
+
     public void telemetry(){
         opMode.telemetry.addData("lift wanted", up1p);
         opMode.telemetry.addData("vertical", robot.drivetrain.fl.getCurrentPosition());
