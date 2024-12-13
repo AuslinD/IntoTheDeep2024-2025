@@ -7,32 +7,32 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class Claw {
 
     private Servo left, right, arm;
-    double leftGrab = -.5;
+    double leftGrab = 0;
     double rightGrab = .5;
-    double leftRelease = -.32;
+    double leftRelease = .3;
     double rightRelease = .34;
 
 
     public Claw (OpMode opmode){
-        left = opmode.hardwareMap.get(Servo.class, "leftclaw");
-        right = opmode.hardwareMap.get(Servo.class, "rightclaw");
-        arm = opmode.hardwareMap.get(Servo.class, "arm");
+        left = opmode.hardwareMap.get(Servo.class, "claw");
+        //right = opmode.hardwareMap.get(Servo.class, "rightclaw");
+        arm = opmode.hardwareMap.get(Servo.class, "leftArm");
         
     }
 
     public Claw (LinearOpMode linearOpMode){
-        left = linearOpMode.hardwareMap.get(Servo.class, "leftclaw");
-        right = linearOpMode.hardwareMap.get(Servo.class, "rightclaw");
+        left = linearOpMode.hardwareMap.get(Servo.class, "claw");
+        //right = linearOpMode.hardwareMap.get(Servo.class, "rightclaw");
     }
 
     public void grabClaw(){
         left.setPosition(leftGrab);
-        right.setPosition(rightGrab);
+        //right.setPosition(rightGrab);
     }
 
     public void releaseClaw(){
         left.setPosition(leftRelease);
-        right.setPosition(rightRelease);
+        //right.setPosition(rightRelease);
     }
 
     public void setPosition(double position){
