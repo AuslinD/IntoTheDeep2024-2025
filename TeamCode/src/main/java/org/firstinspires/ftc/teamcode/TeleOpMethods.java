@@ -142,12 +142,12 @@ public class TeleOpMethods {
 
             up2p = up1p;
 
-            if(up1p < 15/* && !ignoreBounds*/)
+            if(up1p < 50/* && !ignoreBounds*/)
             {
-                up1p = 15;
+                up1p = 50;
             }
-            else if(up1p > 3450/* && !ignoreBounds*/){
-                up1p = 3450;
+            else if(up1p > 2050/* && !ignoreBounds*/){
+                up1p = 2500;
             }
             robot.lift.goUpOrDown((int)(up1p));
         }
