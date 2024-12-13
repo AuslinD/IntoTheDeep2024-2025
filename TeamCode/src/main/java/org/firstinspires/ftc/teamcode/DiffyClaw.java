@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.AnalogInput;
 import com.qualcomm.robotcore.hardware.CRServo;
@@ -29,6 +30,20 @@ public class DiffyClaw {
 
 
         claw = opmode.hardwareMap.get(Servo.class, "claw");
+    }
+
+    public DiffyClaw(LinearOpMode linearOpMode){
+        leftArm = linearOpMode.hardwareMap.get(Servo.class, "leftArm");
+        rightArm = linearOpMode.hardwareMap.get(Servo.class, "rightArm");
+
+        leftDiffy = linearOpMode.hardwareMap.get(CRServo.class, "leftDiffy");
+        rightDiffy = linearOpMode.hardwareMap.get(CRServo.class, "rightDiffy");
+
+        leftDiffyEncoder = linearOpMode.hardwareMap.get(AnalogInput.class, "leftDiffyEncoder");
+        rightDiffyEncoder = linearOpMode.hardwareMap.get(AnalogInput.class, "rightDiffyEncoder");
+
+
+        claw = linearOpMode.hardwareMap.get(Servo.class, "claw");
     }
 
     public void setArmPos(double pos){

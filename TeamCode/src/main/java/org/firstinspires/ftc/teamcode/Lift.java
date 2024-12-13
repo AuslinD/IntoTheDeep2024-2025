@@ -8,7 +8,8 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 public class Lift {
 
     OpMode opMode;
-    DcMotor leftSlide, rightSlide;
+    public DcMotor leftSlide;
+    DcMotor rightSlide;
     double power = .8;
     public Lift(OpMode opMode){
         this.opMode = opMode;
