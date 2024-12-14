@@ -4,13 +4,19 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.AnalogInput;
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.ServoController;
+import com.qualcomm.robotcore.hardware.ServoControllerEx;
 
 public class DiffyClaw {
 
     private double rightArmOffSet = 0;
+
+    //These don't go negative anymore for some reason???
     private Servo leftArm, rightArm;
-    private CRServo leftDiffy, rightDiffy;
+
+    private Servo leftDiffy, rightDiffy;
     private Servo claw;
 
     public AnalogInput leftDiffyEncoder, rightDiffyEncoder;
@@ -22,8 +28,9 @@ public class DiffyClaw {
         leftArm = opmode.hardwareMap.get(Servo.class, "leftArm");
         rightArm = opmode.hardwareMap.get(Servo.class, "rightArm");
 
-        leftDiffy = opmode.hardwareMap.get(CRServo.class, "leftDiffy");
-        rightDiffy = opmode.hardwareMap.get(CRServo.class, "rightDiffy");
+
+        leftDiffy = opmode.hardwareMap.get(Servo.class, "leftDiffy");
+        rightDiffy = opmode.hardwareMap.get(Servo.class, "rightDiffy");
 
         leftDiffyEncoder = opmode.hardwareMap.get(AnalogInput.class, "leftDiffyEncoder");
         rightDiffyEncoder = opmode.hardwareMap.get(AnalogInput.class, "rightDiffyEncoder");
@@ -32,6 +39,7 @@ public class DiffyClaw {
         claw = opmode.hardwareMap.get(Servo.class, "claw");
     }
 
+    /*
     public DiffyClaw(LinearOpMode linearOpMode){
         leftArm = linearOpMode.hardwareMap.get(Servo.class, "leftArm");
         rightArm = linearOpMode.hardwareMap.get(Servo.class, "rightArm");
@@ -46,21 +54,24 @@ public class DiffyClaw {
         claw = linearOpMode.hardwareMap.get(Servo.class, "claw");
     }
 
+     */
+
     public void setArmPos(double pos){
-        leftArm.setPosition(pos);
-        rightArm.setPosition(pos + rightArmOffSet);
+        rightArm.setPosition(pos);
+        leftArm.setPosition(1-pos);
     }
 
     public void setClawPos(double pos){
         claw.setPosition(pos);
     }
 
-    public void setRightDiffyPower(double power){
-        rightDiffy.setPower(power);
+    public void setRightDiffyPosition(double power){
+        rightDiffy.setPosition(power);
     }
 
-    public void setLeftDiffyPower(double power){
-        leftDiffy.setPower(power);
+    public void setLeftDiffyPosition(double power){
+        leftDiffy.setPosition(power);
+        //rightDiffy.setPosition(power);
     }
 
 

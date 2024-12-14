@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.IMU;
 public class Robot {
     Drivetrain drivetrain;
     Lift lift;
-    Claw claw;
+    DiffyClaw claw;
     OpMode opMode;
 
     IMU imu;
@@ -19,7 +19,7 @@ public class Robot {
     public Robot (OpMode opMode) {
         drivetrain = new Drivetrain(opMode);
         lift = new Lift(opMode);
-        claw = new Claw(opMode);
+        claw = new DiffyClaw(opMode);
 
         this.opMode = opMode;
 
@@ -36,7 +36,7 @@ public class Robot {
     public Robot (LinearOpMode opMode) {
         drivetrain = new Drivetrain(opMode);
         lift = new Lift(opMode);
-        claw = new Claw(opMode);
+        claw = new DiffyClaw(opMode);
 
         this.opMode = opMode;
 

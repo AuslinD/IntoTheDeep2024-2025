@@ -11,6 +11,10 @@ public class OuttakeTesting extends OpMode {
     double armPos = 0;
     double clawPos = 0;
 
+    double leftPos = 0;
+    double leftDiffyPos = 0;
+    double rightPos = 0;
+
     @Override
     public void init() {
         outtake = new DiffyClaw(this);
@@ -22,31 +26,31 @@ public class OuttakeTesting extends OpMode {
 
 
         if(gamepad2.right_trigger > .1){
-            outtake.setRightDiffyPower(.5);
+            outtake.setRightDiffyPosition(-.5);
         }
         else{
-            outtake.setLeftDiffyPower(0);
+            outtake.setRightDiffyPosition(0);
         }
 
         if(gamepad2.left_trigger > .1){
-            outtake.setLeftDiffyPower(.5);
+            outtake.setLeftDiffyPosition(-.5);
         }
         else{
-            outtake.setLeftDiffyPower(0);
+            outtake.setLeftDiffyPosition(0);
         }
 
         if(gamepad2.dpad_up){
-            armPos += .05;
+            armPos += .005;
         }
         if(gamepad2.dpad_down){
-            armPos -= .05;
+            armPos -= .005;
         }
 
         if(gamepad2.right_bumper){
-            clawPos += .05;
+            clawPos += .005;
         }
         if(gamepad2.left_bumper){
-            clawPos -= .05;
+            clawPos -= .005;
         }
 
         outtake.setArmPos(armPos);
@@ -54,8 +58,8 @@ public class OuttakeTesting extends OpMode {
 
 
 
-        telemetry.addData("rightDiffy", outtake.rightDiffyEncoder.getVoltage() / 3.3 * 360);
-        telemetry.addData("leftDiffy", outtake.leftDiffyEncoder.getVoltage() / 3.3 * 360);
+        telemetry.addData("rightDiffy", rightPos);
+        telemetry.addData("leftDiffy", leftPos);
         telemetry.addData("armPos", armPos);
         telemetry.addData("clawPos", clawPos);
 

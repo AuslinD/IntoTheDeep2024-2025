@@ -12,22 +12,29 @@ public class TeleOpMethods {
 
     Robot robot;
     static double up1p, up2p;
-    static double armAngle;
+    static double armAngle = 0;
+
+    static double diffyPos = 0;
     private static boolean ignoreBounds = false;
 
     public TeleOpMethods(OpMode opMode) {
         this.opMode = opMode;
         robot = new Robot(opMode);
 
-        armAngle = .3;
-
+        armAngle = 0.05;
+        up1p = 0;
+        diffyPos = 0;
     }
 
     public void teleOpControls(Gamepad gamepad1, Gamepad gamepad2)
     {
-        fieldCentric(gamepad1, gamepad2);
+        drivetrain(gamepad1, gamepad2);
         verticalLift(gamepad1, gamepad2);
-        claw(gamepad1, gamepad2);
+        //claw(gamepad1, gamepad2);
+        arm(gamepad1, gamepad2);
+        diffyClaw(gamepad1, gamepad2);
+
+
         telemetry();
     }
     public void drivetrain(Gamepad gamepad1, Gamepad gamepad2) {
@@ -130,10 +137,14 @@ public class TeleOpMethods {
 
         int multiplier = 35;
 
-        if (Math.abs(gamepad2.left_stick_y) > 0.1){
-            up1p += -gamepad2.left_stick_y * multiplier;
+        if(gamepad2.b){
+            up1p = 1130;
+        }
 
-            if(gamepad2.left_stick_y > .1){
+        if (Math.abs(gamepad2.right_stick_y) > 0.1){
+            up1p += -gamepad2.right_stick_y * multiplier;
+
+            if(gamepad2.right_stick_y > .1){
                 robot.lift.power = .6;
             }
             else{
@@ -146,18 +157,22 @@ public class TeleOpMethods {
             {
                 up1p = 50;
             }
-            else if(up1p > 2050/* && !ignoreBounds*/){
+            else if(up1p > 2500 /* && !ignoreBounds*/){
                 up1p = 2500;
             }
-            robot.lift.goUpOrDown((int)(up1p));
+
         }
         else{
             //up1p = robot.lift.rightSlide.getCurrentPosition();
         }
+
+        robot.lift.goUpOrDown((int)(up1p));
+
     }
 
     public void claw(Gamepad gamepad1, Gamepad gamepad2){
         // claw grabby and release
+        /*
         if(gamepad2.a){
             robot.claw.grabClaw();
         }
@@ -178,6 +193,42 @@ public class TeleOpMethods {
             armAngle = -1;
         }
         robot.claw.setPosition(armAngle);
+         */
+    }
+
+    public void diffyClaw(Gamepad gamepad1, Gamepad gamepad2){
+        if (gamepad2.right_trigger > 0){
+            robot.claw.setClawPos(.355);
+        }else{
+            robot.claw.setClawPos(.065);
+        }
+
+        if(gamepad2.left_bumper){
+            diffyPos += .02;
+        }
+        if(gamepad2.right_bumper){
+            diffyPos -= .02;
+        }
+
+
+        robot.claw.setRightDiffyPosition(diffyPos);
+        robot.claw.setLeftDiffyPosition(diffyPos);
+    }
+
+    public void arm(Gamepad gamepad1, Gamepad gamepad2){
+        if(gamepad2.dpad_up){
+            armAngle += .005;
+        }
+
+        if(gamepad2.dpad_down) {
+            armAngle -= .005;
+        }
+
+        if(gamepad2.a){
+            armAngle = .355;
+        }
+
+        robot.claw.setArmPos(armAngle);
     }
 
     public void tempClaw(Gamepad gamepad1, Gamepad gamepad2){
@@ -186,6 +237,7 @@ public class TeleOpMethods {
 
     public void telemetry(){
         opMode.telemetry.addData("lift wanted", up1p);
+        opMode.telemetry.addData("diffyPos", diffyPos);
         opMode.telemetry.addData("vertical", robot.drivetrain.fl.getCurrentPosition());
         opMode.telemetry.addData("horizontal", robot.drivetrain.fr.getCurrentPosition());
         opMode.telemetry.addData("firstangle", robot.imu.getRobotYawPitchRollAngles());
