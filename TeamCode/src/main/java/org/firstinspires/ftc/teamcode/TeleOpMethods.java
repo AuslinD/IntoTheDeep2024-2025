@@ -11,10 +11,12 @@ public class TeleOpMethods {
     OpMode opMode;
 
     Robot robot;
-    static double up1p, up2p;
-    static double armAngle = 0;
+    double up1p, up2p;
+    double armAngle = 0;
 
-    static double diffyPos = 0;
+    double diffyPos = 0;
+
+    double diffyOffSet = 0;
     private static boolean ignoreBounds = false;
 
     public TeleOpMethods(OpMode opMode) {
@@ -24,6 +26,7 @@ public class TeleOpMethods {
         armAngle = 0.05;
         up1p = 0;
         diffyPos = 0;
+        diffyOffSet = 0;
     }
 
     public void teleOpControls(Gamepad gamepad1, Gamepad gamepad2)
@@ -210,9 +213,16 @@ public class TeleOpMethods {
             diffyPos -= .02;
         }
 
+        if(gamepad2.left_stick_y > .1){
+            diffyOffSet += .02;
+        }
+        else if (gamepad2.left_stick_y < -.1){
+            diffyOffSet -= .02;
+        }
+
 
         robot.claw.setRightDiffyPosition(diffyPos);
-        robot.claw.setLeftDiffyPosition(diffyPos);
+        robot.claw.setLeftDiffyPosition(diffyPos + diffyOffSet);
     }
 
     public void arm(Gamepad gamepad1, Gamepad gamepad2){
@@ -238,6 +248,7 @@ public class TeleOpMethods {
     public void telemetry(){
         opMode.telemetry.addData("lift wanted", up1p);
         opMode.telemetry.addData("diffyPos", diffyPos);
+        opMode.telemetry.addData("diffyOffset", diffyOffSet);
         opMode.telemetry.addData("vertical", robot.drivetrain.fl.getCurrentPosition());
         opMode.telemetry.addData("horizontal", robot.drivetrain.fr.getCurrentPosition());
         opMode.telemetry.addData("firstangle", robot.imu.getRobotYawPitchRollAngles());
