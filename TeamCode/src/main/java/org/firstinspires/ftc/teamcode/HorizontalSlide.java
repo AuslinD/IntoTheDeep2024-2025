@@ -40,43 +40,5 @@ public class HorizontalSlide {
         leftHorizontal.setPower(power);
         rightHorizontal.setPower(power);
     }
-    /*public Lift(LinearOpMode linearOpMode){
 
-        leftHorozontol = opMode.hardwareMap.get(DcMotorEx.class, "leftslide");
-        rightHorozontol = opMode.hardwareMap.get(DcMotorEx.class, "rightslide");
-
-        leftHorozontol.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightHorozontol.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-        leftHorozontol.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        rightHorozontol.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
-        leftHorozontol.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        rightHorozontol.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-        leftHorozontol.setDirection(DcMotor.Direction.FORWARD);
-        rightHorozontol.setDirection(DcMotor.Direction.REVERSE);
-
-        leftHorozontol.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightHorozontol.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-        leftHorozontol.setTargetPosition(0);
-        rightHorozontol.setTargetPosition(0);
-
-
-        leftHorozontol.setPower(power);
-        rightHorozontol.setPower(power);
-    }
-
-    public void goUpOrDown (int targetPosition){
-        leftHorozontol.setTargetPosition(targetPosition);
-        rightHorozontol.setTargetPosition(targetPosition);
-    }
-
-    public void setMotorPower(double power){
-
-        leftHorozontol.setPower(power);
-        rightHorozontol.setPower(power);
-    }
-*/
 }

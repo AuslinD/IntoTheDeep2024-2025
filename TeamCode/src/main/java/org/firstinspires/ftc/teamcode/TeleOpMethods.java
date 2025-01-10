@@ -173,6 +173,17 @@ public class TeleOpMethods {
 
     }
 
+    public void horizontalSlide(Gamepad gamepad1, Gamepad gamepad2){
+        //lstick
+    }
+
+    public void intake(Gamepad gamepad1, Gamepad gamepad2){
+        //leftTriggerIntakeIn
+        //button y IntakeReversed
+
+
+    }
+
     public void claw(Gamepad gamepad1, Gamepad gamepad2){
         // claw grabby and release
         /*
