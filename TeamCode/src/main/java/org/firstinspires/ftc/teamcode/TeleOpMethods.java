@@ -36,6 +36,7 @@ public class TeleOpMethods {
         //claw(gamepad1, gamepad2);
         arm(gamepad1, gamepad2);
         diffyClaw(gamepad1, gamepad2);
+        intakeMove(gamepad1, gamepad2);
 
 
         telemetry();
@@ -234,6 +235,15 @@ public class TeleOpMethods {
 
         robot.claw.setRightDiffyPosition(diffyPos);
         robot.claw.setLeftDiffyPosition(diffyPos + diffyOffSet);
+    }
+
+    public void intakeMove(Gamepad gamepad1, Gamepad gamepad2){
+        if (gamepad2.left_trigger > 0){
+            robot.intake.intakeMotor.setPower(1);
+        }
+        if (gamepad2.y){
+            robot.intake.intakeMotor.setPower(-1);
+        }
     }
 
     public void arm(Gamepad gamepad1, Gamepad gamepad2){

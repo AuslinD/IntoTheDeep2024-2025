@@ -8,11 +8,11 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class Intake {
 
     OpMode opMode;
-    DcMotor intake;
+    DcMotor intakeMotor;
     Servo intakeAngle;
 
     public Intake (OpMode opMode){
-        intake = opMode.hardwareMap.get(DcMotorEx.class, "intake");
+        intakeMotor = opMode.hardwareMap.get(DcMotorEx.class, "intake");
         intakeAngle = opMode.hardwareMap.get(Servo.class, "intakeAngle");
     }
 
