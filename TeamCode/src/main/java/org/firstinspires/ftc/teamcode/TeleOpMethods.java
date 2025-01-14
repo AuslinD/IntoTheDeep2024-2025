@@ -225,24 +225,29 @@ public class TeleOpMethods {
             diffyPos -= .02;
         }
 
-        if(gamepad2.left_stick_y > .1){
+        /*if(gamepad2.left_stick_y > .1){
             diffyOffSet += .02;
         }
         else if (gamepad2.left_stick_y < -.1){
             diffyOffSet -= .02;
         }
 
+         */
+
 
         robot.claw.setRightDiffyPosition(diffyPos);
-        robot.claw.setLeftDiffyPosition(diffyPos + diffyOffSet);
+        robot.claw.setLeftDiffyPosition(1-diffyPos);
     }
 
     public void intakeMove(Gamepad gamepad1, Gamepad gamepad2){
         if (gamepad2.left_trigger > 0){
             robot.intake.intakeMotor.setPower(1);
         }
-        if (gamepad2.y){
+        else if (gamepad2.y){
             robot.intake.intakeMotor.setPower(-1);
+        }
+        else{
+            robot.intake.intakeMotor.setPower(0);
         }
     }
 

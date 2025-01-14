@@ -39,8 +39,8 @@ public class Lift {
     }
     public Lift(LinearOpMode linearOpMode){
 
-        leftSlide = opMode.hardwareMap.get(DcMotorEx.class, "leftslide");
-        rightSlide = opMode.hardwareMap.get(DcMotorEx.class, "rightslide");
+        leftSlide = opMode.hardwareMap.get(DcMotorEx.class, "leftlift");
+        rightSlide = opMode.hardwareMap.get(DcMotorEx.class, "rightlift");
 
         leftSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
