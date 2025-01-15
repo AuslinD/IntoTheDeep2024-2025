@@ -35,6 +35,7 @@ public class Robot {
 
     }
 
+    /*
     public Robot (LinearOpMode opMode) {
         drivetrain = new Drivetrain(opMode);
         lift = new Lift(opMode);
@@ -68,8 +69,9 @@ public class Robot {
         imu = opMode.hardwareMap.get(BNO055IMU.class, "imu");
         imu.initialize(parameters);
 
-         */
+         *\/
     }
+    */
 
     public void resetIMU(){
         // Set up the parameters with which we will use our IMU. Note that integration

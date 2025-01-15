@@ -26,14 +26,14 @@ public class OuttakeTesting extends OpMode {
 
 
         if(gamepad2.right_trigger > .1){
-            outtake.setRightDiffyPosition(-.5);
+            outtake.setRightDiffyPosition(.5);
         }
         else{
             outtake.setRightDiffyPosition(0);
         }
 
         if(gamepad2.left_trigger > .1){
-            outtake.setLeftDiffyPosition(-.5);
+            outtake.setLeftDiffyPosition(.5);
         }
         else{
             outtake.setLeftDiffyPosition(0);
@@ -58,8 +58,10 @@ public class OuttakeTesting extends OpMode {
 
 
 
-        telemetry.addData("rightDiffy", rightPos);
-        telemetry.addData("leftDiffy", leftPos);
+        //telemetry.addData("rightDiffy", rightPos);
+        //telemetry.addData("leftDiffy", leftPos);
+        telemetry.addData("rightDiffyAnalog", outtake.rightDiffyEncoder.getVoltage());
+        telemetry.addData("leftDiffyAnalog", outtake.leftDiffyEncoder.getVoltage());
         telemetry.addData("armPos", armPos);
         telemetry.addData("clawPos", clawPos);
 
