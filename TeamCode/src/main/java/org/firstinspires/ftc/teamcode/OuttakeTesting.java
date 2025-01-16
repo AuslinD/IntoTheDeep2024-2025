@@ -42,6 +42,12 @@ public class OuttakeTesting extends OpMode {
 
         if(gamepad2.dpad_up){
             armPos += .005;
+            if (armPos > 1){
+                armPos = 1;
+            }
+            else if (armPos < 0){
+                armPos = 0;
+            }
         }
         if(gamepad2.dpad_down){
             armPos -= .005;

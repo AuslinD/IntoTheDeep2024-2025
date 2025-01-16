@@ -14,6 +14,8 @@ public class TeleOpMethods {
     double up1p, up2p;
     double armAngle = 0;
 
+    double armPos = 0;
+
     double diffyPos = 0;
 
     double diffyOffSet = 0;
