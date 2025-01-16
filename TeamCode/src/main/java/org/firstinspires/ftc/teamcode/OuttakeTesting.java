@@ -34,6 +34,7 @@ public class OuttakeTesting extends OpMode {
 
         if(gamepad2.left_trigger > .1){
             outtake.setLeftDiffyPosition(.5);
+            //outtake.setRightDiffyPosition(.5);
         }
         else{
             outtake.setLeftDiffyPosition(0);
