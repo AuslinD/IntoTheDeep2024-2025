@@ -26,18 +26,18 @@ public class OuttakeTesting extends OpMode {
 
 
         if(gamepad2.right_trigger > .1){
-            outtake.setRightDiffyPosition(.5);
+            outtake.rightDiffy.setPower(.5);
         }
         else{
-            outtake.setRightDiffyPosition(0);
+            outtake.rightDiffy.setPower(0);
         }
 
         if(gamepad2.left_trigger > .1){
-            outtake.setLeftDiffyPosition(.5);
+            outtake.leftDiffy.setPower(.5);
             //outtake.setRightDiffyPosition(.5);
         }
         else{
-            outtake.setLeftDiffyPosition(0);
+            outtake.leftDiffy.setPower(0);
         }
 
         if(gamepad2.dpad_up){

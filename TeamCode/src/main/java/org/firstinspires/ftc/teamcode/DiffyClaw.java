@@ -16,7 +16,7 @@ public class DiffyClaw {
     //These don't go negative anymore for some reason???
     private Servo leftArm, rightArm;
 
-    private Servo leftDiffy, rightDiffy;
+    public CRServo leftDiffy, rightDiffy;
     private Servo claw;
 
     public AnalogInput leftDiffyEncoder, rightDiffyEncoder;
@@ -29,8 +29,8 @@ public class DiffyClaw {
         rightArm = opmode.hardwareMap.get(Servo.class, "rightArm");
 
 
-        leftDiffy = opmode.hardwareMap.get(Servo.class, "leftDiffy");
-        rightDiffy = opmode.hardwareMap.get(Servo.class, "rightDiffy");
+        leftDiffy = opmode.hardwareMap.get(CRServo.class, "leftDiffy");
+        rightDiffy = opmode.hardwareMap.get(CRServo.class, "rightDiffy");
 
         leftDiffyEncoder = opmode.hardwareMap.get(AnalogInput.class, "leftDiffyEncoder");
         rightDiffyEncoder = opmode.hardwareMap.get(AnalogInput.class, "rightDiffyEncoder");
@@ -65,6 +65,7 @@ public class DiffyClaw {
         claw.setPosition(pos);
     }
 
+    /*
     public void setRightDiffyPosition(double power){
         rightDiffy.setPosition(power);
     }
@@ -73,6 +74,8 @@ public class DiffyClaw {
         leftDiffy.setPosition(power);
         //rightDiffy.setPosition(power);
     }
+
+     */
 
 
 

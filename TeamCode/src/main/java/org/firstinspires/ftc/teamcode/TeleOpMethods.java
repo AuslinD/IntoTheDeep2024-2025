@@ -235,8 +235,8 @@ public class TeleOpMethods {
          */
 
 
-        robot.claw.setRightDiffyPosition(diffyPos);
-        robot.claw.setLeftDiffyPosition(1-diffyPos);
+        //robot.claw.setRightDiffyPosition(diffyPos);
+        //robot.claw.setLeftDiffyPosition(1-diffyPos);
     }
 
     public void intakeMove(Gamepad gamepad1, Gamepad gamepad2){
