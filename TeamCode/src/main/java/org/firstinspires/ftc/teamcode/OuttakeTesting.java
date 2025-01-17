@@ -11,9 +11,15 @@ public class OuttakeTesting extends OpMode {
     double armPos = 0;
     double clawPos = 0;
 
-    double leftPos = 0;
-    double leftDiffyPos = 0;
-    double rightPos = 0;
+    double rightDiffyChange = 0;
+    double leftDiffyChange = 0;
+
+    double lastLeftDiffyPos;
+    double lastRightDiffyPos;
+
+    //double leftPos = 0;
+    //double leftDiffyPos = 0;
+    //double rightPos = 0;
 
     @Override
     public void init() {
@@ -67,12 +73,35 @@ public class OuttakeTesting extends OpMode {
 
         //telemetry.addData("rightDiffy", rightPos);
         //telemetry.addData("leftDiffy", leftPos);
+
+
+        if(Math.abs(lastLeftDiffyPos - outtake.leftDiffyEncoder.getVoltage()) > 2){
+            if(lastLeftDiffyPos > outtake.leftDiffyEncoder.getVoltage()){
+                leftDiffyChange += 3.3 - lastLeftDiffyPos + outtake.leftDiffyEncoder.getVoltage();
+            }
+            else{
+                leftDiffyChange -= 3.3 - (outtake.leftDiffyEncoder.getVoltage() - lastLeftDiffyPos);
+            }
+        }
+        else{
+            leftDiffyChange += outtake.leftDiffyEncoder.getVoltage() - lastLeftDiffyPos;
+        }
+
+        if(Math.abs(lastRightDiffyPos - outtake.rightDiffyEncoder.getVoltage()) > 2){
+
+        }
+        else{
+            rightDiffyChange += outtake.rightDiffyEncoder.getVoltage() - lastRightDiffyPos;
+        }
+
+
+        lastLeftDiffyPos = outtake.leftDiffyEncoder.getVoltage();
+        lastRightDiffyPos = outtake.rightDiffyEncoder.getVoltage();
+
         telemetry.addData("rightDiffyAnalog", outtake.rightDiffyEncoder.getVoltage());
         telemetry.addData("leftDiffyAnalog", outtake.leftDiffyEncoder.getVoltage());
         telemetry.addData("armPos", armPos);
         telemetry.addData("clawPos", clawPos);
-
-
         telemetry.update();
         //telemetry.addData()
     }

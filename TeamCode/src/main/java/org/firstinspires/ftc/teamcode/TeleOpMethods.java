@@ -33,7 +33,7 @@ public class TeleOpMethods {
 
     public void teleOpControls(Gamepad gamepad1, Gamepad gamepad2)
     {
-        drivetrain(gamepad1, gamepad2);
+        fieldCentric(gamepad1, gamepad2);
         verticalLift(gamepad1, gamepad2);
         //claw(gamepad1, gamepad2);
         arm(gamepad1, gamepad2);
