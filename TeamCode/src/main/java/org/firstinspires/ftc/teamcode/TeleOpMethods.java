@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Gamepad;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
@@ -9,6 +10,8 @@ public class TeleOpMethods {
 
 
     OpMode opMode;
+
+    ElapsedTime elapsedTime;
 
     Robot robot;
     double up1p, up2p;
@@ -24,12 +27,16 @@ public class TeleOpMethods {
 
     double diffyTargetChange = 0;
 
+    double delayTime;
+
 
     private static boolean ignoreBounds = false;
 
     public TeleOpMethods(OpMode opMode) {
         this.opMode = opMode;
         robot = new Robot(opMode);
+
+        elapsedTime = new ElapsedTime();
 
         armAngle = 0.05;
         up1p = 0;
@@ -254,10 +261,10 @@ public class TeleOpMethods {
 
 
         if(leftDiffyChange > diffyTargetChange + .03) {
-            robot.claw.leftDiffy.setPower(.05);
+            //robot.claw.leftDiffy.setPower(.05);
         }
         else if(leftDiffyChange < diffyTargetChange - .03){
-            robot.claw.leftDiffy.setPower(-.05);
+            //robot.claw.leftDiffy.setPower(-.05);
         }
         else{
             robot.claw.leftDiffy.setPower(0);
@@ -265,10 +272,10 @@ public class TeleOpMethods {
 
 
         if(rightDiffyChange > diffyTargetChange + .03){
-            robot.claw.rightDiffy.setPower(.055);
+            //robot.claw.rightDiffy.setPower(.055);
         }
         else if(rightDiffyChange < diffyTargetChange - .03){
-            robot.claw.rightDiffy.setPower(-.055);
+            //robot.claw.rightDiffy.setPower(-.055);
         }
         else{
             robot.claw.rightDiffy.setPower(0);
@@ -294,13 +301,17 @@ public class TeleOpMethods {
             //intake extension port 5 expansion hub
             //intake updown port 5 control hub
             robot.intake.intakeExtension.setPosition(.5);
-            robot.intake.intakeAngle.setPosition(0.1);
+            if(elapsedTime.milliseconds() > 500){
+                robot.intake.intakeAngle.setPosition(0.1);
+            }
+
         }
         else if (gamepad2.y){
             robot.intake.intakeMotor.setPower(-1);
 
         }
         else{
+            elapsedTime.reset();
             robot.intake.intakeExtension.setPosition(0); //meant to be 0
             robot.intake.intakeMotor.setPower(0);
             robot.intake.intakeAngle.setPosition(0.3);
