@@ -12,6 +12,7 @@ public class Robot {
     Lift lift;
     DiffyClaw claw;
     Intake intake;
+
     OpMode opMode;
 
     IMU imu;
@@ -22,6 +23,7 @@ public class Robot {
         lift = new Lift(opMode);
         claw = new DiffyClaw(opMode);
         intake = new Intake(opMode);
+
 
         this.opMode = opMode;
 
