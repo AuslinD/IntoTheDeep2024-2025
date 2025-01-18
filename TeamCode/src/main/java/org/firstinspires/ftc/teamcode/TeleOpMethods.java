@@ -15,7 +15,7 @@ public class TeleOpMethods {
 
     Robot robot;
     double up1p, up2p;
-    double armAngle = 0;
+    double armAngle = 1;
 
     double armPos = 0;
 
@@ -38,7 +38,7 @@ public class TeleOpMethods {
 
         elapsedTime = new ElapsedTime();
 
-        armAngle = 0.05;
+        armAngle = 1;
         up1p = 0;
 
         lastLeftDiffyPos = robot.claw.leftDiffyEncoder.getVoltage();
