@@ -306,6 +306,15 @@ public class TeleOpMethods {
             }
 
         }
+        else if (gamepad2.right_trigger > 0){
+            robot.intake.intakeMotor.setPower(1);
+            //intake extension port 5 expansion hub
+            //intake updown port 5 control hub
+            robot.intake.intakeExtension.setPosition(.5);
+                robot.intake.intakeAngle.setPosition(0.1);
+
+
+        }
         else if (gamepad2.y){
             robot.intake.intakeMotor.setPower(-1);
 
