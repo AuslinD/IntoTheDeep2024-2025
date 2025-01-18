@@ -294,23 +294,26 @@ public class TeleOpMethods {
             //intake extension port 5 expansion hub
             //intake updown port 5 control hub
             robot.intake.intakeExtension.setPosition(.5);
+            robot.intake.intakeAngle.setPosition(0.1);
         }
         else if (gamepad2.y){
             robot.intake.intakeMotor.setPower(-1);
+
         }
         else{
-            robot.intake.intakeExtension.setPosition(0);
+            robot.intake.intakeExtension.setPosition(0); //meant to be 0
             robot.intake.intakeMotor.setPower(0);
+            robot.intake.intakeAngle.setPosition(0.3);
         }
     }
 
     public void arm(Gamepad gamepad1, Gamepad gamepad2){
         if(gamepad2.dpad_up){
-            armAngle += .005;
+            armAngle += .01;
         }
 
         if(gamepad2.dpad_down) {
-            armAngle -= .005;
+            armAngle -= .01;
         }
 
         if(gamepad2.a){
