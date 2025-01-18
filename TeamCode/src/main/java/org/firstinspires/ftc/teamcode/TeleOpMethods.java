@@ -291,7 +291,7 @@ public class TeleOpMethods {
     public void intakeMove(Gamepad gamepad1, Gamepad gamepad2){
         if (gamepad2.left_trigger > 0){
             robot.intake.intakeMotor.setPower(1);
-            
+            //intake extension port 5 expansion hub
         }
         else if (gamepad2.y){
             robot.intake.intakeMotor.setPower(-1);
