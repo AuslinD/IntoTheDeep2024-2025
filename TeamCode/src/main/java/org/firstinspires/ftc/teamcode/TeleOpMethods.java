@@ -230,7 +230,7 @@ public class TeleOpMethods {
 
     public void diffyClaw(Gamepad gamepad1, Gamepad gamepad2){
         if (gamepad2.right_trigger > 0){
-            robot.claw.setClawPos(.355);
+            robot.claw.setClawPos(.255);
         }else{
             robot.claw.setClawPos(.065);
         }
@@ -296,7 +296,10 @@ public class TeleOpMethods {
     }
 
     public void intakeMove(Gamepad gamepad1, Gamepad gamepad2){
-        if (gamepad2.left_trigger > 0){
+        if(gamepad1.a){
+            robot.intake.intakeAngle.setPosition(.4);
+        }
+        else if (gamepad2.left_trigger > 0){
             robot.intake.intakeMotor.setPower(1);
             //intake extension port 5 expansion hub
             //intake updown port 5 control hub
