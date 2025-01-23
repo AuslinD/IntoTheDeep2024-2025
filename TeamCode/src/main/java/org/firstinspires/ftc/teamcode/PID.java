@@ -63,6 +63,13 @@ public class PID {
         i = i_sum * k_i;
         d = ((error - previousError) / deltaTime) * k_d;
 
+        if(!Double.isFinite(i)){
+            i = 0;
+        }
+        if(!Double.isFinite(d)){
+            d = 0;
+        }
+
         previousError = error;
         previousTime = curTime;
         return p + i + d;

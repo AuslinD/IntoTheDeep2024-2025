@@ -2,8 +2,11 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Gamepad;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+
+import java.util.Arrays;
 
 public class TeleOpMethods {
 
@@ -16,6 +19,8 @@ public class TeleOpMethods {
 
     double armPos = 0;
 
+    //ElapsedTime diffyTime;
+
     double rightDiffyChange = 0;
     double leftDiffyChange = 0;
 
@@ -23,6 +28,9 @@ public class TeleOpMethods {
     double lastRightDiffyPos;
 
     double diffyTargetChange = 0;
+
+    PID leftDiffyPID = new PID(.35, 0, 0, 0);
+    PID rightDiffyPID = new PID(.35, 0, 0, 0);
 
 
     private static boolean ignoreBounds = false;
@@ -252,23 +260,37 @@ public class TeleOpMethods {
          */
 
 
+        leftDiffyPID.setTarget(diffyTargetChange);
+        double leftPower = -leftDiffyPID.loop(leftDiffyChange, 0);
+
+        if(leftPower >= .25) leftPower = .25;
+        if(leftPower <= -.25) leftPower = -.25;
+
+        rightDiffyPID.setTarget(diffyTargetChange);
+        double rightPower = -rightDiffyPID.loop(rightDiffyChange,0);
+        if(rightPower >= .25) rightPower = .25;
+        if(rightPower <= -.25) rightPower = -.25;
+
+        opMode.telemetry.addData("left, right Diffy Power", Arrays.toString(new double[]{leftPower, rightPower}));
 
         if(leftDiffyChange > diffyTargetChange + .03) {
-            robot.claw.leftDiffy.setPower(.05);
+            robot.claw.leftDiffy.setPower(leftPower);
         }
         else if(leftDiffyChange < diffyTargetChange - .03){
-            robot.claw.leftDiffy.setPower(-.05);
+            robot.claw.leftDiffy.setPower(leftPower);
         }
         else{
             robot.claw.leftDiffy.setPower(0);
         }
 
 
+        //Double.isNaN(rightPower);
+
         if(rightDiffyChange > diffyTargetChange + .03){
-            robot.claw.rightDiffy.setPower(.055);
+            robot.claw.rightDiffy.setPower(rightPower);
         }
         else if(rightDiffyChange < diffyTargetChange - .03){
-            robot.claw.rightDiffy.setPower(-.055);
+            robot.claw.rightDiffy.setPower(rightPower);
         }
         else{
             robot.claw.rightDiffy.setPower(0);
