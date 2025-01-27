@@ -24,6 +24,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(name = "Red_RR_Left_Auto", group = "Autonomous")
 public class RedAuto extends LinearOpMode{
+
+
     Lift lift;
     DiffyClaw diffyClaw;
     ElapsedTime elapsedTime;
@@ -42,7 +44,7 @@ public class RedAuto extends LinearOpMode{
                 .waitSeconds(2)
                 .build();
 
-        toSample = drivetrain.actionBuilder(initialPose)
+        toSample = drivetrain.actionBuilder(new Pose2d(0, -34, Math.toRadians(90)))
                 .setReversed(true)
                 .splineToLinearHeading(new Pose2d(38, -30, -1.5708), Math.toRadians(90))
                 .splineToConstantHeading(new Vector2d(36, -14), Math.toRadians(0))
@@ -50,13 +52,27 @@ public class RedAuto extends LinearOpMode{
                 .waitSeconds(2)
                 .build();
 
-        toPark = drivetrain.actionBuilder(initialPose)
+        toPark = drivetrain.actionBuilder(new Pose2d(45, -15, -1.5708))
                 .splineToConstantHeading(new Vector2d(56, -60), Math.toRadians(0))
                 .build();
 
         waitForStart();
 
-        Actions.runBlocking(new SequentialAction(toSubmersible, liftUp(), ClawPosition(0), new ParallelAction(liftDown(), ClawPosition(0)), toSample, toPark));
+        Actions.runBlocking(
+                new SequentialAction(
+                    toSubmersible,
+                    liftUp(),
+                    ClawPosition(0),
+                    new SequentialAction(
+                            liftDown(),
+                            ClawPosition(0)),
+                            toSample,
+                            toPark
+                )
+        );
+
+
+
     }
     public class LiftUp implements Action {
         private boolean initialized = false;

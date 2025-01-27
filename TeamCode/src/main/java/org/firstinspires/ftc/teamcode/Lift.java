@@ -37,7 +37,7 @@ public class Lift {
         leftSlide.setPower(power);
         rightSlide.setPower(power);
     }
-    public Lift(LinearOpMode linearOpMode){
+    /*public Lift(LinearOpMode linearOpMode){
 
         leftSlide = opMode.hardwareMap.get(DcMotorEx.class, "leftlift");
         rightSlide = opMode.hardwareMap.get(DcMotorEx.class, "rightlift");
@@ -64,6 +64,8 @@ public class Lift {
         leftSlide.setPower(power);
         rightSlide.setPower(power);
     }
+
+     */
 
     public void goUpOrDown (int targetPosition){
         leftSlide.setTargetPosition(targetPosition);
