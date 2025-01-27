@@ -239,11 +239,11 @@ public class TeleOpMethods {
 
 
         if(gamepad2.right_bumper){
-            diffyTargetChange += .05;
+            diffyTargetChange += .1;
         }
 
         if(gamepad2.left_bumper){
-            diffyTargetChange -= .05;
+            diffyTargetChange -= .1;
         }
 
         /*

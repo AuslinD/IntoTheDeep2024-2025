@@ -25,8 +25,8 @@ import org.firstinspires.ftc.teamcode.messages.TwoDeadWheelInputsMessage;
 @Config
 public final class TwoDeadWheelLocalizer implements Localizer {
     public static class Params {
-        public double parYTicks = 1946.56369481636; // y position of the parallel encoder (in tick units)
-        public double perpXTicks = 2248.7286311344983; // x position of the perpendicular encoder (in tick units)
+        public double parYTicks = -1946.56369481636; // y position of the parallel encoder (in tick units)1946.56369481636 why tf it works when negative
+        public double perpXTicks = -2248.688308165299; // x position of the perpendicular encoder (in tick units)2248.688308165299
     }
 
     public static Params PARAMS = new Params();
@@ -50,7 +50,8 @@ public final class TwoDeadWheelLocalizer implements Localizer {
         perp = new OverflowEncoder(new RawEncoder(hardwareMap.get(DcMotorEx.class, "fr")));
 
         // TODO: reverse encoder directions if needed
-        par.setDirection(DcMotorSimple.Direction.REVERSE);
+        par.setDirection(DcMotorSimple.Direction.FORWARD);
+        perp.setDirection(DcMotorSimple.Direction.REVERSE);
 
         this.imu = imu;
 
