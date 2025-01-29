@@ -15,7 +15,7 @@ public class DiffyClaw {
     private double rightArmOffSet = 0;
 
     //These don't go negative anymore for some reason???
-    private Servo leftArm, rightArm;
+    public Servo leftArm, rightArm;
 
     public CRServo leftDiffy, rightDiffy;
     private Servo claw;
