@@ -167,6 +167,8 @@ public class TeleOpMethods {
             //up1p = 1130;
         }
 
+
+        /*
         if (Math.abs(gamepad2.right_stick_y) > 0.1){
             up1p += -gamepad2.right_stick_y * multiplier;
 
@@ -179,17 +181,26 @@ public class TeleOpMethods {
 
             up2p = up1p;
 
-            if(up1p < 50/* && !ignoreBounds*/)
+            if(up1p < 50)
             {
                 up1p = 50;
             }
-            else if(up1p > 2500 /* && !ignoreBounds*/){
+            else if(up1p > 2500){
                 up1p = 2500;
             }
-
         }
         else{
             //up1p = robot.lift.rightSlide.getCurrentPosition();
+        }
+         */
+        if(gamepad2.right_stick_y < -.1){
+            up1p = 2500;
+        }
+        else if(gamepad2.right_stick_y > .1){
+            up1p = 50;
+        }
+        else{
+            up1p = robot.lift.leftSlide.getCurrentPosition();
         }
 
         robot.lift.goUpOrDown((int)(up1p));

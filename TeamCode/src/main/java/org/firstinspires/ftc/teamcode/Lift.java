@@ -10,7 +10,7 @@ public class Lift {
     OpMode opMode;
     public DcMotor leftSlide;
     DcMotor rightSlide;
-    double power = .8;
+    double power = 1;
     public Lift(OpMode opMode){
         this.opMode = opMode;
         leftSlide = opMode.hardwareMap.get(DcMotorEx.class, "leftlift");
