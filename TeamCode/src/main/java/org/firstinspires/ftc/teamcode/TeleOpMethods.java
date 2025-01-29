@@ -322,7 +322,7 @@ public class TeleOpMethods {
             robot.intake.intakeMotor.setPower(1);
             //intake extension port 5 expansion hub
             //intake updown port 5 control hub
-            robot.intake.intakeExtension.setPosition(.5);
+            robot.intake.setIntakeExtension(.5);
             if(intakeElapsedTime.milliseconds() > 500){
                 robot.intake.intakeAngle.setPosition(0.1);
             }
@@ -332,7 +332,7 @@ public class TeleOpMethods {
             robot.intake.intakeMotor.setPower(1);
             //intake extension port 5 expansion hub
             //intake updown port 5 control hub
-            robot.intake.intakeExtension.setPosition(.5);
+            robot.intake.setIntakeExtension(.5);
             robot.intake.intakeAngle.setPosition(0.1);
 
 
@@ -343,7 +343,7 @@ public class TeleOpMethods {
         }
         else{
             intakeElapsedTime.reset();
-            robot.intake.intakeExtension.setPosition(0); //meant to be 0
+            robot.intake.setIntakeExtension(0); //meant to be 0
             robot.intake.intakeMotor.setPower(0);
             robot.intake.intakeAngle.setPosition(0.3);
         }
