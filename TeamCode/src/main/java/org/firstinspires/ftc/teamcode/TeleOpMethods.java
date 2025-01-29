@@ -32,6 +32,8 @@ public class TeleOpMethods {
     PID leftDiffyPID = new PID(.35, 0, 0, 0);
     PID rightDiffyPID = new PID(.35, 0, 0, 0);
 
+    ElapsedTime intakeElapsedTime;
+
 
     private static boolean ignoreBounds = false;
 
@@ -41,6 +43,8 @@ public class TeleOpMethods {
 
         armAngle = 0.05;
         up1p = 0;
+
+        intakeElapsedTime = new ElapsedTime();
 
         lastLeftDiffyPos = robot.claw.leftDiffyEncoder.getVoltage();
         lastRightDiffyPos = robot.claw.rightDiffyEncoder.getVoltage();
@@ -311,38 +315,58 @@ public class TeleOpMethods {
     }
 
     public void intakeMove(Gamepad gamepad1, Gamepad gamepad2){
-        if (gamepad2.left_trigger > 0){
+        if(gamepad1.a){
+            robot.intake.intakeAngle.setPosition(.4);
+        }
+        else if (gamepad2.left_trigger > 0){
             robot.intake.intakeMotor.setPower(1);
             //intake extension port 5 expansion hub
             //intake updown port 5 control hub
             robot.intake.intakeExtension.setPosition(.5);
+            if(intakeElapsedTime.milliseconds() > 500){
+                robot.intake.intakeAngle.setPosition(0.1);
+            }
+
+        }
+        else if (gamepad2.right_trigger > 0){
+            robot.intake.intakeMotor.setPower(1);
+            //intake extension port 5 expansion hub
+            //intake updown port 5 control hub
+            robot.intake.intakeExtension.setPosition(.5);
+            robot.intake.intakeAngle.setPosition(0.1);
+
+
         }
         else if (gamepad2.y){
             robot.intake.intakeMotor.setPower(-1);
+
         }
         else{
-            robot.intake.intakeExtension.setPosition(0);
+            intakeElapsedTime.reset();
+            robot.intake.intakeExtension.setPosition(0); //meant to be 0
             robot.intake.intakeMotor.setPower(0);
+            robot.intake.intakeAngle.setPosition(0.3);
         }
     }
 
     public void arm(Gamepad gamepad1, Gamepad gamepad2){
         if(gamepad2.dpad_up){
-            armAngle += .005;
+            armAngle += .05;
         }
 
         if(gamepad2.dpad_down) {
-            armAngle -= .005;
+            armAngle -= .05;
         }
 
         if(gamepad2.a){
-            armAngle = .355;
+            armAngle = 0;
         }
+        //.16? straight
 
         robot.claw.setArmPos(armAngle);
     }
 
-    public void tempClaw(Gamepad gamepad1, Gamepad gamepad2){
+    public void macro(Gamepad gamepad1, Gamepad gamepad2){
 
     }
 
