@@ -161,7 +161,7 @@ public class TeleOpMethods {
             robot = new Robot(robot.teleOpMode);
         }*/
 
-        int multiplier = 35;
+        int multiplier = 45;
 
         if(gamepad2.b){
             //up1p = 1130;
