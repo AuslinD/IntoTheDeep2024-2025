@@ -94,7 +94,7 @@ public class OuttakeTesting extends OpMode {
         //telemetry.addData("leftDiffy", leftPos);
 
 
-        if(Math.abs(lastLeftDiffyPos - outtake.leftDiffyEncoder.getVoltage()) > 2.2){
+        if(Math.abs(lastLeftDiffyPos - outtake.leftDiffyEncoder.getVoltage()) > 2.6){
             if(lastLeftDiffyPos > outtake.leftDiffyEncoder.getVoltage()){
                 leftDiffyChange += 3.3 - lastLeftDiffyPos + outtake.leftDiffyEncoder.getVoltage();
             }
@@ -106,7 +106,7 @@ public class OuttakeTesting extends OpMode {
             leftDiffyChange += outtake.leftDiffyEncoder.getVoltage() - lastLeftDiffyPos;
         }
 
-        if(Math.abs(lastRightDiffyPos - outtake.rightDiffyEncoder.getVoltage()) > 2.2){
+        if(Math.abs(lastRightDiffyPos - outtake.rightDiffyEncoder.getVoltage()) > 2.6){
             if(lastRightDiffyPos > outtake.rightDiffyEncoder.getVoltage()){
                 rightDiffyChange -= 3.3 - lastRightDiffyPos + outtake.rightDiffyEncoder.getVoltage();
             }

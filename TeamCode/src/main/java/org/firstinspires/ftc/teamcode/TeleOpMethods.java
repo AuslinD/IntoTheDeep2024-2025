@@ -393,7 +393,7 @@ public class TeleOpMethods {
             leftDiffyChange += robot.claw.leftDiffyEncoder.getVoltage() - lastLeftDiffyPos;
         }
 
-        if(Math.abs(lastRightDiffyPos - robot.claw.rightDiffyEncoder.getVoltage()) > 2.2){
+        if(Math.abs(lastRightDiffyPos - robot.claw.rightDiffyEncoder.getVoltage()) > 2.6){
             if(lastRightDiffyPos > robot.claw.rightDiffyEncoder.getVoltage()){
                 rightDiffyChange -= 3.3 - lastRightDiffyPos + robot.claw.rightDiffyEncoder.getVoltage();
             }
