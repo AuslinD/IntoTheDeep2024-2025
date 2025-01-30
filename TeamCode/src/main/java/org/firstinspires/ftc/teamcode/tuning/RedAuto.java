@@ -63,11 +63,10 @@ public class RedAuto extends LinearOpMode{
                     toSubmersible,
                     liftUp(),
                     ClawPosition(0),
-                    new SequentialAction(
-                            liftDown(),
-                            ClawPosition(0)),
-                            toSample,
-                            toPark
+                    liftDown(),
+                    ClawPosition(0),
+                    toSample,
+                    toPark
                 )
         );
 

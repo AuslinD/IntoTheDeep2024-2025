@@ -29,8 +29,8 @@ public class TeleOpMethods {
 
     double diffyTargetChange = 0;
 
-    PID leftDiffyPID = new PID(.35, 0, 0, 0);
-    PID rightDiffyPID = new PID(.35, 0, 0, 0);
+    PID leftDiffyPID = new PID(.4, 0, 0, 0);
+    PID rightDiffyPID = new PID(.4, 0, 0, 0);
 
     ElapsedTime intakeElapsedTime;
 
@@ -163,12 +163,9 @@ public class TeleOpMethods {
 
         int multiplier = 45;
 
-        if(gamepad2.b){
-            //up1p = 1130;
-        }
 
 
-        /*
+        /* old version of lift
         if (Math.abs(gamepad2.right_stick_y) > 0.1){
             up1p += -gamepad2.right_stick_y * multiplier;
 
@@ -378,11 +375,13 @@ public class TeleOpMethods {
     }
 
     public void macro(Gamepad gamepad1, Gamepad gamepad2){
-
+        if(gamepad2.b){
+            robot.intake.setIntakeExtension(0);
+        }
     }
 
     public void calcDiffy(){
-        if(Math.abs(lastLeftDiffyPos - robot.claw.leftDiffyEncoder.getVoltage()) > 2.2){
+        if(Math.abs(lastLeftDiffyPos - robot.claw.leftDiffyEncoder.getVoltage()) > 2.6){
             if(lastLeftDiffyPos > robot.claw.leftDiffyEncoder.getVoltage()){
                 leftDiffyChange += 3.3 - lastLeftDiffyPos + robot.claw.leftDiffyEncoder.getVoltage();
             }
