@@ -324,7 +324,7 @@ public class TeleOpMethods {
 
     public void intakeMove(Gamepad gamepad1, Gamepad gamepad2){
         if(gamepad1.a){
-            robot.intake.intakeAngle.setPosition(.4);
+            robot.intake.setIntakeUp();
         }
         else if (gamepad2.left_trigger > 0){
             robot.intake.intakeMotor.setPower(1);
@@ -332,7 +332,7 @@ public class TeleOpMethods {
             //intake updown port 5 control hub
             robot.intake.setIntakeExtension(.5);
             if(intakeElapsedTime.milliseconds() > 500){
-                robot.intake.intakeAngle.setPosition(0.1);
+                robot.intake.setIntakeDown();
             }
 
         }
@@ -341,7 +341,7 @@ public class TeleOpMethods {
             //intake extension port 5 expansion hub
             //intake updown port 5 control hub
             robot.intake.setIntakeExtension(.5);
-            robot.intake.intakeAngle.setPosition(0.1);
+            robot.intake.setIntakeDown();
 
 
         }
@@ -353,7 +353,7 @@ public class TeleOpMethods {
             intakeElapsedTime.reset();
             robot.intake.setIntakeExtension(0); //meant to be 0
             robot.intake.intakeMotor.setPower(0);
-            robot.intake.intakeAngle.setPosition(0.3);
+            robot.intake.setIntakeUp();
         }
     }
 

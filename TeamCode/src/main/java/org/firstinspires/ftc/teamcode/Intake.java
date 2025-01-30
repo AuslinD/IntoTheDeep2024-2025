@@ -13,6 +13,9 @@ public class Intake {
     Servo leftIntakeExtension;
     Servo intakeAngle;
 
+    double down = 0;
+    double up = .3;
+
     public Intake (OpMode opMode){
         intakeMotor = opMode.hardwareMap.get(DcMotorEx.class, "intake");
         intakeAngle = opMode.hardwareMap.get(Servo.class, "intakeAngle");
@@ -23,6 +26,17 @@ public class Intake {
     public void setIntakeExtension(double pos){
         rightIntakeExtension.setPosition(pos);
         leftIntakeExtension.setPosition(1-pos);
+    }
+
+
+    public void setIntakeDown(){
+        rightIntakeExtension.setPosition(down);
+        leftIntakeExtension.setPosition(1-down);
+    }
+
+    public void setIntakeUp(){
+        rightIntakeExtension.setPosition(up);
+        leftIntakeExtension.setPosition(1-up);
     }
 
 }
