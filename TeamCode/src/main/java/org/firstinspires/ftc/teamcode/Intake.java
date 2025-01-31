@@ -13,7 +13,7 @@ public class Intake {
     Servo leftIntakeExtension;
     Servo intakeAngle;
 
-    double down = 0;
+    double down = 0.06;
     double up = .3;
 
     public Intake (OpMode opMode){
@@ -30,13 +30,12 @@ public class Intake {
 
 
     public void setIntakeDown(){
-        rightIntakeExtension.setPosition(down);
-        leftIntakeExtension.setPosition(1-down);
+        intakeAngle.setPosition(down);
+
     }
 
     public void setIntakeUp(){
-        rightIntakeExtension.setPosition(up);
-        leftIntakeExtension.setPosition(1-up);
+        intakeAngle.setPosition(up);
     }
 
 }

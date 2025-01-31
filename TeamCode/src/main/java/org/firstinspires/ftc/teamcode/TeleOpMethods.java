@@ -34,6 +34,8 @@ public class TeleOpMethods {
 
     ElapsedTime intakeElapsedTime;
 
+    boolean macroRunning = false;
+
 
     private static boolean ignoreBounds = false;
 
@@ -242,7 +244,7 @@ public class TeleOpMethods {
     }
 
     public void diffyClaw(Gamepad gamepad1, Gamepad gamepad2){
-        if (gamepad2.right_trigger > 0){
+        if (gamepad2.b){
             robot.claw.setClawPos(.355);
         }else{
             robot.claw.setClawPos(.065);
@@ -326,7 +328,7 @@ public class TeleOpMethods {
         if(gamepad1.a){
             robot.intake.setIntakeUp();
         }
-        else if (gamepad2.left_trigger > 0){
+        else if (gamepad2.left_trigger > 0.1){
             robot.intake.intakeMotor.setPower(1);
             //intake extension port 5 expansion hub
             //intake updown port 5 control hub
@@ -336,7 +338,7 @@ public class TeleOpMethods {
             }
 
         }
-        else if (gamepad2.right_trigger > 0){
+        else if (gamepad2.right_trigger > 0.1){
             robot.intake.intakeMotor.setPower(1);
             //intake extension port 5 expansion hub
             //intake updown port 5 control hub
@@ -366,6 +368,10 @@ public class TeleOpMethods {
             armAngle -= .05;
         }
 
+        if(armAngle > 1) armAngle = 1;
+
+        if(armAngle < 0) armAngle = 0;
+
         if(gamepad2.a){
             armAngle = 0;
         }
@@ -375,9 +381,17 @@ public class TeleOpMethods {
     }
 
     public void macro(Gamepad gamepad1, Gamepad gamepad2){
+
         if(gamepad2.b){
-            robot.intake.setIntakeExtension(0);
+            macroRunning = true;
         }
+
+        if (macroRunning){
+
+        }
+
+
+
     }
 
     public void calcDiffy(){
@@ -414,6 +428,8 @@ public class TeleOpMethods {
         opMode.telemetry.addData("diffyTargetChange", diffyTargetChange);
         opMode.telemetry.addData("leftDiffyChange", leftDiffyChange);
         opMode.telemetry.addData("rightDiffyChange", rightDiffyChange);
+        opMode.telemetry.addData("leftDiffyAbsolute", robot.claw.leftDiffyEncoder.getVoltage() * 360 / 3.3);
+        opMode.telemetry.addData("rightDiffyAbsolute", robot.claw.rightDiffyEncoder.getVoltage() * 360 / 3.3);
         //opMode.telemetry.addData("diffyOffset", diffyOffSet);
         opMode.telemetry.addData("vertical", robot.drivetrain.fl.getCurrentPosition());
         opMode.telemetry.addData("horizontal", robot.drivetrain.fr.getCurrentPosition());

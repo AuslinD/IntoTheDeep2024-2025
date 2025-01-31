@@ -140,11 +140,21 @@ public class OuttakeTesting extends OpMode {
             outtake.rightDiffy.setPower(0);
         }
 
+        if(gamepad2.a){
+            diffyTargetChange = 0;
+        }
+        if(gamepad2.b){
+            diffyTargetChange = 3.3;
+        }
+
         lastLeftDiffyPos = outtake.leftDiffyEncoder.getVoltage();
         lastRightDiffyPos = outtake.rightDiffyEncoder.getVoltage();
 
         telemetry.addData("rightDiffyAnalog", outtake.rightDiffyEncoder.getVoltage());
         telemetry.addData("leftDiffyAnalog", outtake.leftDiffyEncoder.getVoltage());
+
+        telemetry.addData("leftDiffyAbsolute", outtake.leftDiffyEncoder.getVoltage() * 360 / 3.3);
+        telemetry.addData("rightDiffyAbsolute", outtake.rightDiffyEncoder.getVoltage() * 360 / 3.3);
 
         telemetry.addData("diffyTargetChange", diffyTargetChange);
 
