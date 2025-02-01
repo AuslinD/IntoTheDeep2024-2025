@@ -41,7 +41,7 @@ public class RedAuto extends LinearOpMode{
 
         toSubmersible = drivetrain.actionBuilder(initialPose)
                 .splineToConstantHeading(new Vector2d(0, -34), Math.toRadians(90))
-                .waitSeconds(2)
+
                 .build();
 
         toSample = drivetrain.actionBuilder(new Pose2d(0, -34, Math.toRadians(90)))
@@ -61,10 +61,10 @@ public class RedAuto extends LinearOpMode{
         Actions.runBlocking(
                 new SequentialAction(
                     toSubmersible,
-                    liftUp(),
+                    /*liftUp(),
                     ClawPosition(0),
                     liftDown(),
-                    ClawPosition(0),
+                    ClawPosition(0),*/
                     toSample,
                     toPark
                 )
