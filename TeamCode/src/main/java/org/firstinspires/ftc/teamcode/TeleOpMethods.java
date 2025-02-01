@@ -347,17 +347,20 @@ public class TeleOpMethods {
             robot.intake.intakeMotor.setPower(1);
             //intake extension port 5 expansion hub
             //intake updown port 5 control hub
-            targetIntakeExtension = .49;
+            targetIntakeExtension = .47;
             if(intakeElapsedTime.milliseconds() > 500){
                 robot.intake.setIntakeDown();
             }
 
         }
+        else if(gamepad2.x){
+            robot.intake.intakeMotor.setPower(.2);
+        }
         else if (gamepad2.right_trigger > 0.1){
             robot.intake.intakeMotor.setPower(1);
             //intake extension port 5 expansion hub
             //intake updown port 5 control hub
-            targetIntakeExtension = .49;
+            targetIntakeExtension = .47;
             robot.intake.setIntakeDown();
 
 

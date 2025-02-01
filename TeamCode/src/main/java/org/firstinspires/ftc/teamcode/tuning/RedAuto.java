@@ -32,7 +32,7 @@ public class RedAuto extends LinearOpMode{
     ElapsedTime elapsedTime;
     @Override
     public void runOpMode() throws InterruptedException {
-        Pose2d initialPose = new Pose2d(0, -65, 1.5708);
+        Pose2d initialPose = new Pose2d(0, -65, Math.toRadians(270));
         MecanumDrive drivetrain = new MecanumDrive(hardwareMap, initialPose);
         lift = new Lift(this);
         diffyClaw = new DiffyClaw(this);
@@ -41,6 +41,7 @@ public class RedAuto extends LinearOpMode{
         Action toPark;
 
         toSubmersible = drivetrain.actionBuilder(initialPose)
+                .setReversed(true)
                 .splineToConstantHeading(new Vector2d(0, -34), Math.toRadians(90))
 
                 .build();
