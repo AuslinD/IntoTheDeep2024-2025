@@ -14,6 +14,8 @@ public class TeleOpMethods {
     OpMode opMode;
 
     Robot robot;
+
+
     double up1p, up2p;
     double armAngle = 0;
 
@@ -28,6 +30,9 @@ public class TeleOpMethods {
     double lastRightDiffyPos;
 
     double diffyTargetChange = 0;
+    double diffyLeftOffset = 0;
+    double diffyRightOffset = 0;
+    double targetIntakeExtension = 0;
 
     PID leftDiffyPID = new PID(.4, 0, 0, 0);
     PID rightDiffyPID = new PID(.4, 0, 0, 0);
@@ -250,6 +255,13 @@ public class TeleOpMethods {
             robot.claw.setClawPos(.065);
         }
 
+        if(gamepad2.dpad_left){
+            diffyLeftOffset += .1;
+        }
+        if(gamepad2.dpad_right){
+            diffyRightOffset += .1;
+        }
+
 
 
         if(gamepad2.right_bumper){
@@ -274,23 +286,23 @@ public class TeleOpMethods {
          */
 
 
-        leftDiffyPID.setTarget(diffyTargetChange);
+        leftDiffyPID.setTarget(diffyTargetChange+diffyLeftOffset);
         double leftPower = -leftDiffyPID.loop(leftDiffyChange, 0);
 
         if(leftPower >= .25) leftPower = .25;
         if(leftPower <= -.25) leftPower = -.25;
 
-        rightDiffyPID.setTarget(diffyTargetChange);
+        rightDiffyPID.setTarget(diffyTargetChange+diffyRightOffset);
         double rightPower = -rightDiffyPID.loop(rightDiffyChange,0);
         if(rightPower >= .25) rightPower = .25;
         if(rightPower <= -.25) rightPower = -.25;
 
         opMode.telemetry.addData("left, right Diffy Power", Arrays.toString(new double[]{leftPower, rightPower}));
 
-        if(leftDiffyChange > diffyTargetChange + .03) {
+        if(leftDiffyChange > diffyTargetChange+diffyLeftOffset + .03) {
             robot.claw.leftDiffy.setPower(leftPower);
         }
-        else if(leftDiffyChange < diffyTargetChange - .03){
+        else if(leftDiffyChange < diffyTargetChange+diffyLeftOffset - .03){
             robot.claw.leftDiffy.setPower(leftPower);
         }
         else{
@@ -300,10 +312,10 @@ public class TeleOpMethods {
 
         //Double.isNaN(rightPower);
 
-        if(rightDiffyChange > diffyTargetChange + .03){
+        if(rightDiffyChange > diffyTargetChange+diffyRightOffset + .03){
             robot.claw.rightDiffy.setPower(rightPower);
         }
-        else if(rightDiffyChange < diffyTargetChange - .03){
+        else if(rightDiffyChange < diffyTargetChange+diffyRightOffset - .03){
             robot.claw.rightDiffy.setPower(rightPower);
         }
         else{
@@ -328,11 +340,14 @@ public class TeleOpMethods {
         if(gamepad1.a){
             robot.intake.setIntakeUp();
         }
+        if(Math.abs(gamepad2.left_stick_y) > .1){
+            targetIntakeExtension += gamepad2.left_stick_y * .05;
+        }
         else if (gamepad2.left_trigger > 0.1){
             robot.intake.intakeMotor.setPower(1);
             //intake extension port 5 expansion hub
             //intake updown port 5 control hub
-            robot.intake.setIntakeExtension(.5);
+            targetIntakeExtension = .49;
             if(intakeElapsedTime.milliseconds() > 500){
                 robot.intake.setIntakeDown();
             }
@@ -342,7 +357,7 @@ public class TeleOpMethods {
             robot.intake.intakeMotor.setPower(1);
             //intake extension port 5 expansion hub
             //intake updown port 5 control hub
-            robot.intake.setIntakeExtension(.5);
+            targetIntakeExtension = .49;
             robot.intake.setIntakeDown();
 
 
@@ -353,10 +368,13 @@ public class TeleOpMethods {
         }
         else{
             intakeElapsedTime.reset();
-            robot.intake.setIntakeExtension(0); //meant to be 0
+            targetIntakeExtension = 0; //meant to be 0
             robot.intake.intakeMotor.setPower(0);
             robot.intake.setIntakeUp();
         }
+
+
+        robot.intake.setIntakeExtension(targetIntakeExtension);
     }
 
     public void arm(Gamepad gamepad1, Gamepad gamepad2){

@@ -49,7 +49,7 @@ public class RedAuto extends LinearOpMode{
                 .splineToLinearHeading(new Pose2d(38, -30, -1.5708), Math.toRadians(90))
                 .splineToConstantHeading(new Vector2d(36, -14), Math.toRadians(0))
                 .splineToLinearHeading(new Pose2d(45, -15, -1.5708), Math.toRadians(0))
-                .waitSeconds(2)
+
                 .build();
 
         toPark = drivetrain.actionBuilder(new Pose2d(45, -15, -1.5708))
@@ -61,10 +61,10 @@ public class RedAuto extends LinearOpMode{
         Actions.runBlocking(
                 new SequentialAction(
                     toSubmersible,
-                    /*liftUp(),
-                    ClawPosition(0),
+                    liftUp(),
+                    /*ClawPosition(0),*/
                     liftDown(),
-                    ClawPosition(0),*/
+                   /* ClawPosition(0),*/
                     toSample,
                     toPark
                 )
@@ -79,16 +79,16 @@ public class RedAuto extends LinearOpMode{
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
             if (!initialized) {
-                lift.setMotorPower(0.8);
+                lift.goUpOrDown(2000);
                 initialized = true;
             }
 
             double pos = lift.leftSlide.getCurrentPosition();
             packet.put("liftPos", pos);
-            if (pos < 3000.0) {
+            if (pos < 1900) {
                 return true;
             } else {
-                lift.setMotorPower(0);
+                //lift.setMotorPower(0);
                 return false;
             }
         }
@@ -103,13 +103,13 @@ public class RedAuto extends LinearOpMode{
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
             if (!initialized) {
-                lift.setMotorPower(-0.8);
+                lift.goUpOrDown(0);
                 initialized = true;
             }
 
             double pos = lift.leftSlide.getCurrentPosition();
             packet.put("liftPos", pos);
-            if (pos > 100.0) {
+            if (pos > 50.0) {
                 return true;
             } else {
                 lift.setMotorPower(0);
