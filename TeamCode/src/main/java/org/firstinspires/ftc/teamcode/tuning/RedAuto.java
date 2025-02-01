@@ -15,6 +15,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.DiffyClaw;
 import org.firstinspires.ftc.teamcode.Drivetrain;
+import org.firstinspires.ftc.teamcode.Intake;
 import org.firstinspires.ftc.teamcode.Lift;
 import org.firstinspires.ftc.teamcode.MecanumDrive;
 import org.firstinspires.ftc.teamcode.PID;
@@ -62,9 +63,9 @@ public class RedAuto extends LinearOpMode{
                 new SequentialAction(
                     toSubmersible,
                     liftUp(),
-                    /*ClawPosition(0),*/
+                    /*DiffyAngle(),*/
+                    ClawPosition(.355),
                     liftDown(),
-                   /* ClawPosition(0),*/
                     toSample,
                     toPark
                 )
@@ -142,8 +143,6 @@ public class RedAuto extends LinearOpMode{
             }
             diffyClaw.setClawPos(position);
 
-
-
             return (elapsedTime.milliseconds() < 600);
         }
     }
@@ -156,8 +155,8 @@ public class RedAuto extends LinearOpMode{
     private class DiffyAngle implements Action{
         ElapsedTime elapsedTime;
         PID pid;
-        int position;
-        public void setPosition(int position) {
+        double position;
+        public void setPosition(double position) {
             this.position = position;
         }
         private boolean initialized = false;
@@ -166,14 +165,15 @@ public class RedAuto extends LinearOpMode{
             if(!initialized){
                 elapsedTime = new ElapsedTime();
                 elapsedTime.reset();
-                //pid = new PID(.95, 0.01, 0, position);
+
                 initialized = true;
             }
+            //diffyClaw.setArmPos(position);
             // not done
             return true;
         }
     }
-    private Action DiffyAngle(int pos){
+    private Action DiffyAngle(double pos){
         DiffyAngle action = new DiffyAngle();
         action.setPosition(pos);
         return action;
