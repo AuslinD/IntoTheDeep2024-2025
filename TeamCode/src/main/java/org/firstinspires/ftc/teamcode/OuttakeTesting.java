@@ -8,6 +8,7 @@ public class OuttakeTesting extends OpMode {
 
     DiffyClaw outtake;
 
+
     double armPos = 0;
     double clawPos = 0;
 

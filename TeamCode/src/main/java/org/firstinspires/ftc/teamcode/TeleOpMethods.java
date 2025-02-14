@@ -344,20 +344,32 @@ public class TeleOpMethods {
             targetIntakeExtension += gamepad2.left_stick_y * .05;
         }
         else if (gamepad2.left_trigger > 0.1){
-            robot.intake.intakeMotor.setPower(1);
+            if (robot.intake.colorSensor.red() > 700 && robot.intake.colorSensor.red() < 1400 ) {
+                robot.intake.intakeMotor.setPower(-1);
+            }
+            else {
+                robot.intake.intakeMotor.setPower(1);
+            }
+
             //intake extension port 5 expansion hub
             //intake updown port 5 control hub
-            targetIntakeExtension = .49;
+            targetIntakeExtension = .19;
             if(intakeElapsedTime.milliseconds() > 500){
                 robot.intake.setIntakeDown();
             }
 
         }
         else if (gamepad2.right_trigger > 0.1){
-            robot.intake.intakeMotor.setPower(1);
+            if (robot.intake.colorSensor.red() > 700 && robot.intake.colorSensor.red() < 1400 ){
+                robot.intake.intakeMotor.setPower(-1);
+            }
+            else {
+                robot.intake.intakeMotor.setPower(1);
+            }
+
             //intake extension port 5 expansion hub
             //intake updown port 5 control hub
-            targetIntakeExtension = .49;
+            targetIntakeExtension = .19;
             robot.intake.setIntakeDown();
 
 
