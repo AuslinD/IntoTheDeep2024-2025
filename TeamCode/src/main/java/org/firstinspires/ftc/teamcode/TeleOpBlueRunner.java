@@ -3,12 +3,12 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name = "driveTeleOp", group = "test")
-public class TeleOpRunner extends OpMode {
+@TeleOp(name = "driveTeleOpBlue", group = "test")
+public class TeleOpBlueRunner extends OpMode {
     TeleOpMethods teleOpMethods;
     @Override
     public void init() {
-        teleOpMethods = new TeleOpMethods(this);
+        teleOpMethods = new TeleOpMethods(this, true);
     }
 
     @Override

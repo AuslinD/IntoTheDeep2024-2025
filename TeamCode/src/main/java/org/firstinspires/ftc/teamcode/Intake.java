@@ -20,6 +20,8 @@ public class Intake {
     double up = .3;
     boolean bLedOn = true;
 
+
+
     public Intake (OpMode opMode){
         intakeMotor = opMode.hardwareMap.get(DcMotorEx.class, "intake");
         intakeAngle = opMode.hardwareMap.get(Servo.class, "intakeAngle");
@@ -46,6 +48,22 @@ public class Intake {
 
     public void setIntakeUp(){
         intakeAngle.setPosition(up);
+    }
+
+    public boolean isValidBrick(boolean blueSide){
+
+        if(blueSide) {
+            if (colorSensor.red() > 400 && colorSensor.red() < 2000) {
+                return false;
+            }
+        }
+        else{
+            if (colorSensor.red() < 399 && colorSensor.red() > 70){
+                return false;
+            }
+        }
+
+        return true;
     }
 
 }

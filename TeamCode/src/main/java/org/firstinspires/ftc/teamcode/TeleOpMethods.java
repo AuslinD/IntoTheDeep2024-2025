@@ -41,10 +41,12 @@ public class TeleOpMethods {
 
     boolean macroRunning = false;
 
+    boolean blueSide = false;
+
 
     private static boolean ignoreBounds = false;
 
-    public TeleOpMethods(OpMode opMode) {
+    public TeleOpMethods(OpMode opMode, boolean blueSide) {
         this.opMode = opMode;
         robot = new Robot(opMode);
 
@@ -55,6 +57,10 @@ public class TeleOpMethods {
 
         lastLeftDiffyPos = robot.claw.leftDiffyEncoder.getVoltage();
         lastRightDiffyPos = robot.claw.rightDiffyEncoder.getVoltage();
+
+        this.blueSide = blueSide;
+
+
     }
 
     public void teleOpControls(Gamepad gamepad1, Gamepad gamepad2)
@@ -344,13 +350,12 @@ public class TeleOpMethods {
             targetIntakeExtension += gamepad2.left_stick_y * .05;
         }
         else if (gamepad2.left_trigger > 0.1){
-            if (robot.intake.colorSensor.red() > 700 && robot.intake.colorSensor.red() < 1400 ) {
+            if (!robot.intake.isValidBrick(blueSide)) {
                 robot.intake.intakeMotor.setPower(-1);
             }
             else {
                 robot.intake.intakeMotor.setPower(1);
             }
-
             //intake extension port 5 expansion hub
             //intake updown port 5 control hub
 
@@ -365,7 +370,7 @@ public class TeleOpMethods {
             robot.intake.intakeMotor.setPower(.2);
         }
         else if (gamepad2.right_trigger > 0.1){
-            if (robot.intake.colorSensor.red() > 700 && robot.intake.colorSensor.red() < 1400 ){
+            if (!robot.intake.isValidBrick(blueSide)){
                 robot.intake.intakeMotor.setPower(-1);
             }
             else {
@@ -472,6 +477,9 @@ public class TeleOpMethods {
         opMode.telemetry.addData("horizontal", robot.drivetrain.fr.getCurrentPosition());
         opMode.telemetry.addData("firstangle", robot.imu.getRobotYawPitchRollAngles());
         opMode.telemetry.addData("arm", armAngle);
+        opMode.telemetry.addData("blue side", blueSide);
+        opMode.telemetry.addData("Red", robot.intake.colorSensor.red());
+
         opMode.telemetry.update();
     }
 
